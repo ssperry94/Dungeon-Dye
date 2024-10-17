@@ -4,7 +4,7 @@ Must run this file.
 '''
 
 
-from tkinter import *
+from tkinter import Label, Button, Tk
 from tkinter.ttk import Combobox
 import roller
 
@@ -40,11 +40,16 @@ class MainMenu(Tk):
         modifier_combo.pack()
 
         #button that rolls the dice
-        roll_btn = Button(self, text = "Roll", command = lambda: roller.Dice.rolldice(outcome_lbl, num_combo, side_combo, modifier_combo))
+        roll_btn = Button(self, text = "Roll", command = lambda: self._roll_dice(outcome_lbl, num_combo, side_combo, modifier_combo))
         roll_btn.pack() 
 
         outcome_lbl = Label(self,bg = "white", fg = "green")
         outcome_lbl.pack()
+
+    #wrapper function that instantiates a Dice object and modifies the outcome label with the final roll
+    def _roll_dice(self, outcome:Label, dice_number:Combobox, dice_sides:Combobox, modifier_box:Combobox) -> None:
+        dye = roller.Dice()
+        dye.rolldice(outcome, dice_number, dice_sides, modifier_box)
 
 #main
 if __name__ == "__main__":
