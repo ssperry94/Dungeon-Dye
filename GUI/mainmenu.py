@@ -1,8 +1,12 @@
-import random
-from tkinter import *
-from tkinter import messagebox
-from tkinter.ttk import Combobox
+'''
+Main source .py file for Dice Roller
+Must run this file. 
+'''
 
+
+from tkinter import *
+from tkinter.ttk import Combobox
+import roller
 
 
 class MainMenu(Tk):
@@ -36,29 +40,13 @@ class MainMenu(Tk):
         modifier_combo.pack()
 
         #button that rolls the dice
-        roll_btn = Button(self, text = "Roll", command = lambda: self.rolldice(outcome_lbl, num_combo, side_combo, modifier_combo))
+        roll_btn = Button(self, text = "Roll", command = lambda: roller.Dice.rolldice(outcome_lbl, num_combo, side_combo, modifier_combo))
         roll_btn.pack() 
 
         outcome_lbl = Label(self,bg = "white", fg = "green")
         outcome_lbl.pack()
 
-
-
-    def rolldice(self, lbl, num, sides, modifier = 0):
-        try:
-            num = int(num.get())
-            sides = int(sides.get())
-            modifier = int(modifier.get())
-            list = []
-            for roll in range(1, num + 1):
-                roll = random.randint(1, sides)
-                list.append(roll)
-            lbl.config(text = f"Roll: {sum(list[0:]) + modifier}")
-        except ValueError:
-            messagebox.showerror("Error!", "Ensure that a value has been selected for the number and side box.")
-
-
-
+#main
 if __name__ == "__main__":
     app = MainMenu()
     app.mainloop()
