@@ -6,7 +6,7 @@ class Dice:
     def __init__(self) -> None:
         pass 
 
-    def rolldice(self, lbl:Label, num:Combobox, sides:Combobox, modifier:Combobox):
+    def rolldice(self, lbl:Label, num:Combobox, sides:Combobox, modifier:Combobox) -> None:
         try:
             num = int(num.get())
             sides = int(sides.get())
