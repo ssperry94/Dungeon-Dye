@@ -1,11 +1,12 @@
-from tkinter import Label, Button, Tk
+from tkinter import Label, Button, Tk, Frame
 from tkinter.ttk import Combobox
-from . import roller 
+from . import roller, titleframe
 
 
 class MainMenu(Tk):
     #private attributes
-    _title_lbl:Label = None 
+    _main_frame:Frame = None
+    _title:titleframe.Title = None
     _num_lbl:Label = None
     _num_combo:Combobox = None
     _side_lbl:Label = None
@@ -16,13 +17,15 @@ class MainMenu(Tk):
     _saved_rolls_lbl:Label = None
     _saved_rolls_combo:Combobox = None 
     _roll_btn:Button = None 
-    _save_btn:Button = None 
-    _settings_btn:Button = None 
+ 
 
     def __init__(self, screenName: str | None = None, baseName: str | None = None, className: str = "Tk", useTk: bool = True, sync: bool = False, use: str | None = None) -> None:
         super().__init__(screenName, baseName, className, useTk, sync, use)
         self.geometry("520x340")
-        self.title("Dice Roller")
+        self.title("Dungeon Dice")
+
+        self._main_frame = Frame(self)
+        self._main_frame.grid(row = 0, column = 1)
 
         self._create_widgets()
         self._create_buttons()
@@ -34,9 +37,9 @@ class MainMenu(Tk):
 
     #function that instantiates all widgets, except for buttons 
     def _create_widgets(self) -> None:
+
+        self._title = titleframe.Title(self._main_frame)
         #label for dice number combo box
-        self._title_lbl = Label(self, text = "Dungeon Dye", bg = "black", fg = "red", width = 50, font = 25)
-        self._title_lbl.grid(row = 0, column = 1)
         self._num_lbl = Label(self, text = "Dice Number", bg = "white", fg = "green")
         self._num_lbl.grid(row = 1, column = 0)
 
