@@ -6,7 +6,6 @@ Must run this file.
 
 from tkinter import Label, Button, Tk
 from tkinter.ttk import Combobox
-import roller
 
 
 class MainMenu(Tk):
@@ -75,8 +74,5 @@ class MainMenu(Tk):
         #button that rolls the dice
         roll_btn = Button(self, text = "Roll", command = lambda: self._roll_dice(self._outcome_lbl, self._num_combo, self._side_combo, self._modifier_combo))
         roll_btn.pack()
-#main
-if __name__ == "__main__":
-    app = MainMenu()
-    app.mainloop()
+
 
