@@ -1,11 +1,6 @@
-'''
-Main source .py file for Dice Roller
-Must run this file. 
-'''
-
-
 from tkinter import Label, Button, Tk
 from tkinter.ttk import Combobox
+from roller import Dice
 
 
 class MainMenu(Tk):
@@ -28,7 +23,7 @@ class MainMenu(Tk):
 
     #wrapper function that instantiates a Dice object and modifies the outcome label with the final roll
     def _roll_dice(self, outcome:Label, dice_number:Combobox, dice_sides:Combobox, modifier_box:Combobox) -> None:
-        dye = roller.Dice()
+        dye = Dice()
         dye.rolldice(outcome, dice_number, dice_sides, modifier_box)
 
     #function that instantiates all widgets, except for buttons 
