@@ -1,10 +1,11 @@
 from tkinter import Label, Button, Tk
 from tkinter.ttk import Combobox
-from roller import Dice
+from . import roller 
 
 
 class MainMenu(Tk):
     #private attributes
+    _title_lbl:Label = None 
     _num_lbl:Label = None
     _num_combo:Combobox = None
     _side_lbl:Label = None
@@ -12,6 +13,11 @@ class MainMenu(Tk):
     _modifier_lbl:Label = None
     _modifier_combo:Combobox = None
     _outcome_lbl:Label = None
+    _saved_rolls_lbl:Label = None
+    _saved_rolls_combo:Combobox = None 
+    _roll_btn:Button = None 
+    _save_btn:Button = None 
+    _settings_btn:Button = None 
 
     def __init__(self, screenName: str | None = None, baseName: str | None = None, className: str = "Tk", useTk: bool = True, sync: bool = False, use: str | None = None) -> None:
         super().__init__(screenName, baseName, className, useTk, sync, use)
@@ -23,7 +29,7 @@ class MainMenu(Tk):
 
     #wrapper function that instantiates a Dice object and modifies the outcome label with the final roll
     def _roll_dice(self, outcome:Label, dice_number:Combobox, dice_sides:Combobox, modifier_box:Combobox) -> None:
-        dye = Dice()
+        dye = roller.Dice()
         dye.rolldice(outcome, dice_number, dice_sides, modifier_box)
 
     #function that instantiates all widgets, except for buttons 
@@ -67,7 +73,7 @@ class MainMenu(Tk):
     #function that instantiates buttons only
     def _create_buttons(self) -> None:
         #button that rolls the dice
-        roll_btn = Button(self, text = "Roll", command = lambda: self._roll_dice(self._outcome_lbl, self._num_combo, self._side_combo, self._modifier_combo))
-        roll_btn.pack()
+        self._roll_btn = Button(self, text = "Roll", command = lambda: self._roll_dice(self._outcome_lbl, self._num_combo, self._side_combo, self._modifier_combo))
+        self._roll_btn.pack()
 
 
