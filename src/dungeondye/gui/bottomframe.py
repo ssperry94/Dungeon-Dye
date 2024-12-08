@@ -11,6 +11,7 @@ class BottomButtons(tk.Frame):
 
     def __init__(self, parent):
         super().__init__(parent)
+        self.config(bg = "brown")
         self.grid(column = 0, row = 10)
         self._create_buttons()
 
@@ -22,4 +23,4 @@ class BottomButtons(tk.Frame):
         self._save_bttn.grid(column = 1, row = 0, padx = 150)
 
         self._settings_btn = tk.Button(self, text = "Settings")
-        self._settings_btn.grid(column = 2, row = 0, padx = 100, sticky= "nsew")
+        self._settings_btn.grid(column = 2, row = 0, padx = 50, sticky= "nsew")

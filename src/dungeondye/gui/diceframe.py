@@ -15,8 +15,9 @@ class DiceFrame(tk.Frame):
         _roll_btn:tk.Button = None 
 
         def __init__(self, parent):
-                super().__init__(parent)
-                self.grid(column = 0, row = 1, sticky="nsew", padx = 20, pady = 20)
+                super().__init__(parent, highlightbackground= "black", highlightthickness = 1)
+                self.config(bg = "brown")
+                self.grid(column = 0, row = 1, sticky="nsew")
                 self._create_widgets()
                 self._create_buttons()
 

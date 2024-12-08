@@ -13,10 +13,10 @@ class MainMenu(tk.Tk):
 
     def __init__(self, screenName: str | None = None, baseName: str | None = None, className: str = "Tk", useTk: bool = True, sync: bool = False, use: str | None = None) -> None:
         super().__init__(screenName, baseName, className, useTk, sync, use)
-        self.geometry("700x340")
+        self.geometry("540x340")
         self.title("Dungeon Dice")
-
         self._main_frame = tk.Frame(self)
+        self._main_frame.config(bg = "brown")
         self._main_frame.grid_rowconfigure(0, weight=1)  # Title frame row
         self._main_frame.grid_columnconfigure(0, weight=1) 
         self._main_frame.grid(row = 0,column = 0,stick="nsew")
