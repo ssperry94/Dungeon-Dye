@@ -10,10 +10,13 @@ class DiceFrame(tk.Frame):
         _modifier_lbl:tk.Label = None
         _modifier_combo:ttk.Combobox = None
         _outcome_lbl:tk.Label = None
+        _saved_rolls_lbl:tk.Label = None
+        _saved_rolls_combo:ttk.Combobox = None 
+        _roll_btn:tk.Button = None 
 
         def __init__(self, parent):
                 super().__init__(parent)
-                self.grid(column = 0, row = 1, sticky="nsew")
+                self.grid(column = 0, row = 1, sticky="nsew", padx = 20, pady = 20)
                 self._create_widgets()
                 self._create_buttons()
 
@@ -61,4 +64,4 @@ class DiceFrame(tk.Frame):
         def _create_buttons(self) -> None:
                 #button that rolls the dice
                 self._roll_btn = tk.Button(self, text = "Roll", command = lambda: self._roll_dice())
-                self._roll_btn.grid(row = 7, column = 1)
+                self._roll_btn.grid(row = 7, column = 1, padx = 50, pady = 15)

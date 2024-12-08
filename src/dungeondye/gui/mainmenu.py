@@ -8,9 +8,7 @@ class MainMenu(tk.Tk):
     _main_frame:tk.Frame = None
     _title:titleframe.Title = None
     _dice_setup:diceframe.DiceFrame = None
-    _saved_rolls_lbl:tk.Label = None
-    _saved_rolls_combo:Combobox = None 
-    _roll_btn:tk.Button = None 
+
  
 
     def __init__(self, screenName: str | None = None, baseName: str | None = None, className: str = "Tk", useTk: bool = True, sync: bool = False, use: str | None = None) -> None:

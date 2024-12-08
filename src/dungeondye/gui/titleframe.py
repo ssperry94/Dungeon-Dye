@@ -24,9 +24,9 @@ class Title(tk.Frame):
         self._create_buttons()
 
     def _create_widgets(self) -> None:
-        self._title_lbl = tk.Label(self, text = "Dungeon Dye", bg = "black", fg = "red", font = 25, pady = 3)
+        self._title_lbl = tk.Label(self, text = "Dungeon Dice", bg = "black", fg = "red", font = 25, pady = 20, padx = 20)
         self._title_lbl.grid(column = 0, row = 0, sticky = "nsew")
 
     def _create_buttons(self) -> None: 
         self._settings_btn = tk.Button(self, text = "Settings")
-        self._settings_btn.grid(column = 1, row = 0, padx = 15, sticky= "nsew")
+        self._settings_btn.grid(column = 1, row = 0, pady = 15, padx = 15, sticky= "nsew")
