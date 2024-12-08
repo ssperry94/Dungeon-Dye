@@ -10,7 +10,6 @@ class Title(tk.Frame):
     #private fields
     _main_frame:tk.Frame = None  
     _title_lbl:tk.Label = None
-    _settings_btn:tk.Button = None
 
     def __init__(self, parent):
         super().__init__(parent)
@@ -21,12 +20,8 @@ class Title(tk.Frame):
         self.grid(row = 0, column = 0, sticky = "nsew")
 
         self._create_widgets()
-        self._create_buttons()
 
     def _create_widgets(self) -> None:
         self._title_lbl = tk.Label(self, text = "Dungeon Dice", bg = "black", fg = "red", font = 25, pady = 20, padx = 20)
         self._title_lbl.grid(column = 0, row = 0, sticky = "nsew")
 
-    def _create_buttons(self) -> None: 
-        self._settings_btn = tk.Button(self, text = "Settings")
-        self._settings_btn.grid(column = 1, row = 0, pady = 15, padx = 15, sticky= "nsew")
