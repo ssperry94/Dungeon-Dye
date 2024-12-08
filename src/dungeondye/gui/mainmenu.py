@@ -1,6 +1,5 @@
 import tkinter as tk
-from tkinter.ttk import Combobox
-from . import titleframe, diceframe, bottomframe
+from dungeondye.gui import titleframe, diceframe, bottomframe
 
 
 class MainMenu(tk.Tk):

@@ -1,6 +1,6 @@
 import tkinter as tk 
 from tkinter import ttk
-from . import roller
+from dungeondye import roller
 
 class DiceFrame(tk.Frame):
         _num_lbl:tk.Label = None

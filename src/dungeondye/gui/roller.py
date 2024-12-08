@@ -2,6 +2,7 @@ import random
 from tkinter import messagebox
 from tkinter import Label
 from tkinter.ttk import Combobox
+
 class Dice: 
     def __init__(self) -> None:
         pass 
