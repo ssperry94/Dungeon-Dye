@@ -61,6 +61,13 @@ class DiceFrame(tk.Frame):
                 self._outcome_lbl = tk.Label(self,bg = "white", fg = "green")
                 self._outcome_lbl.grid(row = 8, column = 1)
 
+                self._saved_rolls_lbl = tk.Label(self, text = "My Dice", bg = "white", fg = "green")
+                self._saved_rolls_lbl.grid(row = 4, column = 2)
+
+                self._saved_rolls_combo = ttk.Combobox(self)
+                #add combox list here
+                self._saved_rolls_combo.grid(row = 5, column = 2)
+
         def _create_buttons(self) -> None:
                 #button that rolls the dice
                 self._roll_btn = tk.Button(self, text = "Roll", command = lambda: self._roll_dice())

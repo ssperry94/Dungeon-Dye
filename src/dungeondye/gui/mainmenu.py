@@ -20,9 +20,7 @@ class MainMenu(tk.Tk):
         self._main_frame.grid_rowconfigure(0, weight=1)  # Title frame row
         self._main_frame.grid_columnconfigure(0, weight=1) 
         self._main_frame.grid(row = 0,column = 0,stick="nsew")
-
-
-
+        
         self._create_frames()
 
     #function that instantiates all frames
