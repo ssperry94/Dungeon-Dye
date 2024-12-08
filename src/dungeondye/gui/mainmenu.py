@@ -1,13 +1,13 @@
 import tkinter as tk
 from tkinter.ttk import Combobox
-from . import roller, titleframe
+from . import titleframe, diceframe, bottomframe
 
 
 class MainMenu(tk.Tk):
     #private attributes
     _main_frame:tk.Frame = None
     _title:titleframe.Title = None
-
+    _dice_setup:diceframe.DiceFrame = None
     _saved_rolls_lbl:tk.Label = None
     _saved_rolls_combo:Combobox = None 
     _roll_btn:tk.Button = None 
@@ -27,15 +27,11 @@ class MainMenu(tk.Tk):
 
         self._create_frames()
 
-    #wrapper function that instantiates a Dice object and modifies the outcome label with the final roll
-    def _roll_dice(self) -> None:
-        dye = roller.Dice()
-        dye.rolldice(self._outcome_lbl, self._num_combo, self._side_combo, self._modifier_combo)
-
     #function that instantiates all frames
     def _create_frames(self) -> None:
-
         self._title = titleframe.Title(self._main_frame)
+        self._dice_setup = diceframe.DiceFrame(self._main_frame)
+        
 
 
 

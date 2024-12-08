@@ -1,17 +1,26 @@
 import tkinter as tk 
+from tkinter import ttk
+from . import roller
 
 class DiceFrame(tk.Frame):
         _num_lbl:tk.Label = None
-        _num_combo:tk.tk.Combobox = None
+        _num_combo:ttk.Combobox = None
         _side_lbl:tk.Label = None
-        _side_combo:tk.tk.Combobox = None
+        _side_combo:ttk.Combobox = None
         _modifier_lbl:tk.Label = None
-        _modifier_combo:tk.tk.Combobox = None
+        _modifier_combo:ttk.Combobox = None
         _outcome_lbl:tk.Label = None
 
         def __init__(self, parent):
                 super().__init__(parent)
+                self.grid(column = 0, row = 1, sticky="nsew")
                 self._create_widgets()
+                self._create_buttons()
+
+            #wrapper function that instantiates a Dice object and modifies the outcome label with the final roll
+        def _roll_dice(self) -> None:
+                dye = roller.Dice()
+                dye.rolldice(self._outcome_lbl, self._num_combo, self._side_combo, self._modifier_combo)
 
         def _create_widgets(self):
                 self._num_lbl = tk.Label(self, text = "Dice Number", bg = "white", fg = "green")
@@ -20,7 +29,7 @@ class DiceFrame(tk.Frame):
                 #numlist - range for dice number combolist
                 #combo box that simulates how many dice to roll
                 numlist: list[int] = [num for num in range(1,101)]
-                self._num_combo = tk.Combobox(self)
+                self._num_combo = ttk.Combobox(self)
                 self._num_combo['values'] = numlist
                 self._num_combo.grid(row = 2, column = 0)
 
@@ -29,7 +38,7 @@ class DiceFrame(tk.Frame):
                 self._side_lbl.grid(row = 3, column = 0)
 
                 #combo box to select the dice side 
-                self._side_combo = tk.Combobox(self)
+                self._side_combo = ttk.Combobox(self)
                 self._side_combo['values'] = (4,6,8,10,12,20,100)
                 self._side_combo.grid(row = 4, column = 0)
 
@@ -40,16 +49,16 @@ class DiceFrame(tk.Frame):
                 self._modifier_lbl.grid(row = 5, column = 0)
 
                 #adds a modifer to the roll
-                self._modifier_combo = tk.Combobox(self)
+                self._modifier_combo = ttk.Combobox(self)
                 self._modifier_combo['values'] = mod_list
                 self._modifier_combo.current(0)
                 self._modifier_combo.grid(row = 6, column = 0)
 
                 #displays the outcome of the roll
                 self._outcome_lbl = tk.Label(self,bg = "white", fg = "green")
-                self._outcome_lbl.grid(row = 8, column = 2)
+                self._outcome_lbl.grid(row = 8, column = 1)
 
         def _create_buttons(self) -> None:
                 #button that rolls the dice
                 self._roll_btn = tk.Button(self, text = "Roll", command = lambda: self._roll_dice())
-                self._roll_btn.grid(row = 7, column = 2)
+                self._roll_btn.grid(row = 7, column = 1)
