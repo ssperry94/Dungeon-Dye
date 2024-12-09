@@ -28,7 +28,7 @@ class DiceFrame(tk.Frame):
 
         def _create_widgets(self):
                 self._num_lbl = tk.Label(self, text = "Dice Number", bg = "white", fg = "green")
-                self._num_lbl.grid(row = 1, column = 0)
+                self._num_lbl.grid(row = 1, column = 0, sticky = "nsew")
 
                 #numlist - range for dice number combolist
                 #combo box that simulates how many dice to roll

@@ -12,7 +12,7 @@ class BottomButtons(tk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
         self.config(bg = "brown")
-        self.grid(column = 0, row = 10)
+        self.grid(column = 0, row = 10, sticky = "nsew")
         self._create_buttons()
 
     def _create_buttons(self):
