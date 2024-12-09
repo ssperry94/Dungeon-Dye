@@ -1,6 +1,6 @@
 import tkinter as tk 
 from tkinter import ttk
-from dungeondye import roller
+from dungeondye.gui import roller
 
 class DiceFrame(tk.Frame):
         _num_lbl:tk.Label = None
@@ -16,8 +16,8 @@ class DiceFrame(tk.Frame):
 
         def __init__(self, parent):
                 super().__init__(parent, highlightbackground= "black", highlightthickness = 1)
-                self.config(bg = "brown")
-                self.grid(column = 0, row = 1, sticky="nsew")
+                #self.config(bg = "brown")
+                self.grid(column = 0, row = 1)
                 self._create_widgets()
                 self._create_buttons()
 

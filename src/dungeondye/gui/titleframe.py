@@ -14,10 +14,10 @@ class Title(tk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
         self.config(bg = "black")
-        self.grid_rowconfigure(0, weight=1)  # Allow row to expand
-        self.grid_columnconfigure(0, weight=1)  # Title label column
-        self.grid_columnconfigure(1, weight=0)  # Settings button column
-        self.grid(row = 0, column = 0, sticky = "nsew")
+        # self.grid_rowconfigure(0, weight=1)  # Allow row to expand
+        # self.grid_columnconfigure(0, weight=1)  # Title label column
+        # self.grid_columnconfigure(1, weight=0)  # Settings button column
+        self.grid(row = 0, column = 0)
 
         self._create_widgets()
 
