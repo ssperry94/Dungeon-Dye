@@ -26,7 +26,8 @@
    <bool>false</bool>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color:rgb(35, 40, 48)
+   <string notr="true">background-image:url(:/newPrefix/images/DungeonDyeLogo.png);
+background-color:rgb(35, 40, 48)
 </string>
   </property>
   <property name="iconSize">
@@ -41,37 +42,7 @@
   <property name="dockOptions">
    <set>QMainWindow::AllowTabbedDocks|QMainWindow::AnimatedDocks</set>
   </property>
-  <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="title_label">
-    <property name="geometry">
-     <rect>
-      <x>410</x>
-      <y>20</y>
-      <width>331</width>
-      <height>221</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Lucida Calligraphy</family>
-      <pointsize>26</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-image:url(:/newPrefix/images/DungeonDyeLogo.png);
-border: 3px solid black; </string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-    </property>
-   </widget>
-  </widget>
+  <widget class="QWidget" name="centralwidget"/>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources>
