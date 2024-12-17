@@ -33,6 +33,8 @@ class MainMenu(object):
     def _initalize_widgets(self) -> None:
         #set pixmap
         pixmap = QtGui.QPixmap(r'C:\Users\ssper\OneDrive\Projects\Table-Top-Dice-Roller\src\resources\images\DungeonDyeLogo.png')
+
+        #create title label and add logo
         self._title_label = QtWidgets.QLabel(self.centralwidget)
         self._title_label.setGeometry(QtCore.QRect(390, 30, 331, 221))
         self._title_label.setPixmap(pixmap)
