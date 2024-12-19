@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1017</width>
-    <height>347</height>
+    <height>403</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -90,7 +90,7 @@
     <string notr="true">color:&quot;white&quot;; background-color:&quot;#6A0DAD&quot;; border: 1px solid black </string>
    </property>
   </widget>
-  <widget class="QLabel" name="_dice_side_label_2">
+  <widget class="QLabel" name="modifiers_label">
    <property name="geometry">
     <rect>
      <x>40</x>
@@ -112,7 +112,7 @@
     <string>Modifiers </string>
    </property>
   </widget>
-  <widget class="QComboBox" name="_dice_side_combo_2">
+  <widget class="QComboBox" name="_modifiers_combo">
    <property name="geometry">
     <rect>
      <x>40</x>
@@ -123,6 +123,70 @@
    </property>
    <property name="styleSheet">
     <string notr="true">color:&quot;white&quot;; background-color:&quot;#6A0DAD&quot;; border: 1px solid black </string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="roll_button">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>220</y>
+     <width>93</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:&quot;#FE2B26&quot;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="_saved_roll_combo">
+   <property name="geometry">
+    <rect>
+     <x>780</x>
+     <y>140</y>
+     <width>131</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color:&quot;white&quot;; background-color:&quot;#6A0DAD&quot;; border: 1px solid black </string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="_saved_rolls_label">
+   <property name="geometry">
+    <rect>
+     <x>780</x>
+     <y>110</y>
+     <width>131</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Copperplate Gothic Bold</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color:&quot;#FE2B26&quot;</string>
+   </property>
+   <property name="text">
+    <string>Saved Rolls</string>
+   </property>
+  </widget>
+  <widget class="QTextBrowser" name="_output_browser">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>260</y>
+     <width>381</width>
+     <height>131</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color:&quot;#6A0DAD&quot;;border:1px solid white;</string>
    </property>
   </widget>
  </widget>
