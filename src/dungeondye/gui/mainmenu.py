@@ -55,5 +55,5 @@ class MainMenu(object):
     def _initalize_frames(self, main_window:QtWidgets.QMainWindow):
         dice_frame = diceframe.DiceFrame(main_window)
         dice_frame.setupUi()
-        self._layout.addWidget(dice_frame)
+        self._layout.addWidget(dice_frame, alignment=QtCore.Qt.AlignCenter)
 
