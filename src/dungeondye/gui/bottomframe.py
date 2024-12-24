@@ -1,26 +1,34 @@
-'''
-Frame containing the exit and save buttons 
-'''
-import tkinter as tk
+from PyQt5 import QtCore, QtGui, QtWidgets
 
-class BottomButtons(tk.Frame):
-    #private attributes
-    _exit_bttn:tk.Button = None
-    _save_bttn:tk.Button = None 
-    _settings_btn:tk.Button = None
+class ButtonFrame(QtWidgets.QWidget):
+    _exit_button:QtWidgets.QPushButton
+    _save_button:QtWidgets.QPushButton
+    _settings_button:QtWidgets.QPushButton
+    _frame_layout:QtWidgets.QHBoxLayout
 
-    def __init__(self, parent):
-        super().__init__(parent)
-        self.config(bg = "brown")
-        self.grid(column = 0, row = 10, sticky = "nsew")
-        self._create_buttons()
+    def setupUI(self) -> None:
+        self.setObjectName("button_panel")
+        self.setStyleSheet("background-color:rgb(35, 40, 48)\n"
+"")
+        self.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        self._frame_layout = QtWidgets.QHBoxLayout(self)
+        self._initalize_buttons()
 
-    def _create_buttons(self):
-        self._exit_bttn = tk.Button(self, text = "Exit", command = lambda: exit(0))
-        self._exit_bttn.grid(column = 0, row = 0, padx = 20)
-        
-        self._save_bttn = tk.Button(self, text = "Save")
-        self._save_bttn.grid(column = 1, row = 0, padx = 150)
+    def _initalize_buttons(self) -> None:
+        self._exit_button = QtWidgets.QPushButton(text = "Exit")
+        self._exit_button.setStyleSheet("background-color:\"#FE2B26\"")
+        self._exit_button.setObjectName("exit_button")
+        self._exit_button.setFixedSize(93,28)
+        self._frame_layout.addWidget(self._exit_button)
 
-        self._settings_btn = tk.Button(self, text = "Settings")
-        self._settings_btn.grid(column = 2, row = 0, padx = 50, sticky= "nsew")
+        self._save_button = QtWidgets.QPushButton(text = "Save")
+        self._save_button.setStyleSheet("background-color:\"#FE2B26\"")
+        self._save_button.setObjectName("save_button")
+        self._save_button.setFixedSize(93,28)
+        self._frame_layout.addWidget(self._save_button)
+
+        self._settings_button = QtWidgets.QPushButton(text = "Settings")
+        self._settings_button.setStyleSheet("background-color:\"#FE2B26\"")
+        self._settings_button.setObjectName("settings_button")
+        self._settings_button.setFixedSize(93,28)
+        self._frame_layout.addWidget(self._settings_button)

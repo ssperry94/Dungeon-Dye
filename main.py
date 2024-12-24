@@ -8,4 +8,4 @@ if __name__ == "__main__":
     main_window = QtWidgets.QMainWindow()
     main_menu.setupUi(main_window)
     DungeonDye.exec_()
-    #DungeonDye.mainloop()
+

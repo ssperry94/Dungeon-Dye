@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtWidgets, QtGui
-from dungeondye.gui import diceframe
+from dungeondye.gui import diceframe, bottomframe
 
 class MainMenu(object):
     _title_label:QtWidgets.QLabel
@@ -54,6 +54,8 @@ class MainMenu(object):
     
     def _initalize_frames(self, main_window:QtWidgets.QMainWindow):
         dice_frame = diceframe.DiceFrame(main_window)
+        button_frame = bottomframe.ButtonFrame(main_window)
         dice_frame.setupUi()
+        button_frame.setupUI()
         self._layout.addWidget(dice_frame, alignment=QtCore.Qt.AlignCenter)
-
+        self._layout.addWidget(button_frame, alignment=QtCore.Qt.AlignCenter)
