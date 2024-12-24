@@ -117,3 +117,6 @@ class DiceFrame(QtWidgets.QWidget):
         self._dice_side_label.setText(_translate("dice_panel", "Dice Side"))
         self._modifier_label.setText(_translate("dice_panel", "Modifiers "))
         self._saved_rolls_label.setText(_translate("dice_panel", "Saved Rolls"))
+
+    def _populate_combos(self) -> None:
+        pass
