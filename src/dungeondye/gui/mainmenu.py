@@ -9,7 +9,7 @@ class MainMenu(object):
     def setupUi(self, main_window:QtWidgets.QMainWindow) -> None:
         main_window.setObjectName("main_window")
         main_window.setEnabled(True)
-        main_window.resize(1250, 900)
+        main_window.resize(500, 600)
         main_window.setAccessibleName("")
         main_window.setAutoFillBackground(False)
         main_window.setStyleSheet("""background-color:rgb(35, 40, 48)\n""")

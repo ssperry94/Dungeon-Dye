@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1017</width>
-    <height>403</height>
+    <width>915</width>
+    <height>379</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -128,8 +128,8 @@
   <widget class="QPushButton" name="roll_button">
    <property name="geometry">
     <rect>
-     <x>450</x>
-     <y>220</y>
+     <x>440</x>
+     <y>180</y>
      <width>93</width>
      <height>28</height>
     </rect>
@@ -180,7 +180,7 @@
    <property name="geometry">
     <rect>
      <x>300</x>
-     <y>260</y>
+     <y>220</y>
      <width>381</width>
      <height>131</height>
     </rect>
