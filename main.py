@@ -7,5 +7,5 @@ if __name__ == "__main__":
     main_menu = mainmenu.MainMenu()
     main_window = QtWidgets.QMainWindow()
     main_menu.setupUi(main_window)
-    DungeonDye.exec_()
+    sys.exit(DungeonDye.exec_())
 
