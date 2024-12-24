@@ -1,5 +1,3 @@
-from dungeondye.gui import roller
-import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 class DiceFrame(QtWidgets.QWidget):
@@ -22,7 +20,12 @@ class DiceFrame(QtWidgets.QWidget):
 "")
         self.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         self._dice_layout = QtWidgets.QGridLayout(self)
+        self._initalize_widgets()
+        self._initalize_buttons()
+        self.retranslateUi()
+        QtCore.QMetaObject.connectSlotsByName(self)
 
+    def _initalize_widgets(self) -> None:
         self._dice_number_label = QtWidgets.QLabel()
         # self._dice_number_label.setGeometry(QtCore.QRect(40, 40, 131, 20))
         font = QtGui.QFont()
@@ -72,14 +75,6 @@ class DiceFrame(QtWidgets.QWidget):
         self._modifiers_combo.setObjectName("_modifiers_combo")
         self._dice_layout.addWidget(self._modifiers_combo, 5, 0)
 
-        self.roll_button = QtWidgets.QPushButton()
-        # self.roll_button.setGeometry(QtCore.QRect(450, 220, 93, 28))
-        self.roll_button.setStyleSheet("background-color:\"#FE2B26\"")
-        self.roll_button.setText("")
-        self.roll_button.setObjectName("roll_button")
-        self.roll_button.setFixedSize(93,28)
-        self._dice_layout.addWidget(self.roll_button, 6,1)
-
         self._saved_rolls_label = QtWidgets.QLabel()
         # self._saved_rolls_label.setGeometry(QtCore.QRect(780, 110, 131, 20))
         font = QtGui.QFont()
@@ -102,9 +97,15 @@ class DiceFrame(QtWidgets.QWidget):
         self._output_browser.setObjectName("_output_browser")
         self._dice_layout.addWidget(self._output_browser, 7,0,1,3)
 
-        self.retranslateUi()
-        QtCore.QMetaObject.connectSlotsByName(self)
-
+    def _initalize_buttons(self) -> None:
+        self.roll_button = QtWidgets.QPushButton()
+        # self.roll_button.setGeometry(QtCore.QRect(450, 220, 93, 28))
+        self.roll_button.setStyleSheet("background-color:\"#FE2B26\"")
+        self.roll_button.setText("")
+        self.roll_button.setObjectName("roll_button")
+        self.roll_button.setFixedSize(93,28)
+        self._dice_layout.addWidget(self.roll_button, 6,1)
+    
     def retranslateUi(self) -> None:
         _translate = QtCore.QCoreApplication.translate
         self.setWindowTitle(_translate("dice_panel", "Form"))
@@ -112,4 +113,3 @@ class DiceFrame(QtWidgets.QWidget):
         self._dice_side_label.setText(_translate("dice_panel", "Dice Side"))
         self._modifier_label.setText(_translate("dice_panel", "Modifiers "))
         self._saved_rolls_label.setText(_translate("dice_panel", "Saved Rolls"))
-
