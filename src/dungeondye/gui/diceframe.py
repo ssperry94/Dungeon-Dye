@@ -37,9 +37,9 @@ class DiceFrame(QtWidgets.QWidget):
         self._dice_layout.addWidget(self._dice_number_label, 0, 0)
 
         self._dice_number_combo = QtWidgets.QComboBox()
+        self._dice_number_combo.setEditable(True)
         #self._dice_number_combo.setGeometry(QtCore.QRect(40, 70, 131, 22))
         self._dice_number_combo.setStyleSheet("color:\"white\"; background-color:\"#6A0DAD\"; border: 1px solid black ")
-        self._dice_number_combo.setEditable(False)
         self._dice_number_combo.setObjectName("_dice_number_combo")
         self._dice_layout.addWidget(self._dice_number_combo, 1, 0)
 
@@ -54,6 +54,7 @@ class DiceFrame(QtWidgets.QWidget):
         self._dice_layout.addWidget(self._dice_side_label, 2, 0)
 
         self._dice_side_combo = QtWidgets.QComboBox()
+        self._dice_side_combo.setEditable(True)
         # self._dice_side_combo.setGeometry(QtCore.QRect(40, 130, 131, 22))
         self._dice_side_combo.setStyleSheet("color:\"white\"; background-color:\"#6A0DAD\"; border: 1px solid black ")
         self._dice_side_combo.setObjectName("_dice_side_combo")
@@ -70,6 +71,7 @@ class DiceFrame(QtWidgets.QWidget):
         self._dice_layout.addWidget(self._modifier_label, 4, 0)
 
         self._modifiers_combo = QtWidgets.QComboBox()
+        self._modifiers_combo.setEditable(True)
         # self._modifiers_combo.setGeometry(QtCore.QRect(40, 180, 131, 22))
         self._modifiers_combo.setStyleSheet("color:\"white\"; background-color:\"#6A0DAD\"; border: 1px solid black ")
         self._modifiers_combo.setObjectName("_modifiers_combo")
@@ -86,10 +88,13 @@ class DiceFrame(QtWidgets.QWidget):
         self._dice_layout.addWidget(self._saved_rolls_label, 2, 2)
 
         self._saved_roll_combo = QtWidgets.QComboBox()
+        self._saved_roll_combo.setEditable(True)
         # self._saved_roll_combo.setGeometry(QtCore.QRect(780, 140, 131, 22))
         self._saved_roll_combo.setStyleSheet("color:\"white\"; background-color:\"#6A0DAD\"; border: 1px solid black ")
         self._saved_roll_combo.setObjectName("_saved_roll_combo")
         self._dice_layout.addWidget(self._saved_roll_combo, 3, 2)
+
+        self._populate_combos()
 
         self._output_browser = QtWidgets.QTextBrowser()
         # self._output_browser.setGeometry(QtCore.QRect(300, 260, 381, 75))
@@ -119,4 +124,13 @@ class DiceFrame(QtWidgets.QWidget):
         self._saved_rolls_label.setText(_translate("dice_panel", "Saved Rolls"))
 
     def _populate_combos(self) -> None:
-        pass
+        dice_num_list = [str(num) for num in range(1,101)] #number of dye possible
+        dice_side_list = ['4','6','8','10','12','20','100'] #standard dice sides 
+        modifiers_list = [str(num) for num in range(0,101)] #number you can modify
+
+        self._dice_number_combo.addItems(dice_num_list)
+        self._dice_number_combo.setCurrentIndex(-1)
+        self._dice_side_combo.addItems(dice_side_list)
+        self._dice_side_combo.setCurrentIndex(-1)
+        self._modifiers_combo.addItems(modifiers_list)
+
