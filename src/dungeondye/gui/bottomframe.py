@@ -20,19 +20,19 @@ class ButtonFrame(QtWidgets.QWidget):
 
     def _initalize_buttons(self) -> None:
         self._exit_button = QtWidgets.QPushButton(text = "Exit")
-        self._exit_button.setStyleSheet("background-color:\"#FE2B26\"")
+        self._exit_button.setStyleSheet("background-color:\"#FE2B26\";color:black;font-family:\"Copperplate Gothic Bold\"")
         self._exit_button.setObjectName("exit_button")
         self._exit_button.setFixedSize(self._button_height, self._button_width)
         self._frame_layout.addWidget(self._exit_button)
 
         self._save_button = QtWidgets.QPushButton(text = "Save")
-        self._save_button.setStyleSheet("background-color:\"#FE2B26\"")
+        self._save_button.setStyleSheet("background-color:\"#FE2B26\";color:black;font-family:\"Copperplate Gothic Bold\"")
         self._save_button.setObjectName("save_button")
         self._save_button.setFixedSize(self._button_height, self._button_width)
         self._frame_layout.addWidget(self._save_button)
 
         self._settings_button = QtWidgets.QPushButton(text = "Settings")
-        self._settings_button.setStyleSheet("background-color:\"#FE2B26\"")
+        self._settings_button.setStyleSheet("background-color:\"#FE2B26\";color:black;font-family:\"Copperplate Gothic Bold\"")
         self._settings_button.setObjectName("settings_button")
         self._settings_button.setFixedSize(self._button_height, self._button_width)
         self._frame_layout.addWidget(self._settings_button)
