@@ -1,5 +1,5 @@
 import random 
-from PyQt5.QtWidgets import QTextBrowser, QComboBox
+from PyQt5.QtWidgets import QTextBrowser, QComboBox, QErrorMessage
 
 class Dice: 
     def __init__(self) -> None:
@@ -18,4 +18,7 @@ class Dice:
             #print(f"Total roll: {final_roll}\nModifier: {actual_modifier}\nTotal: {final_roll + actual_modifier}")
             output.setText(f"Rolling {actual_num}d{actual_sides}\nTotal Roll: {final_roll}\nModifier: {actual_modifier}\nFinal Roll: {final_roll + actual_modifier}\n\n")
         except ValueError:
-           print("ValueError Thrown")
+           val_error = QErrorMessage()
+           val_error.setWindowTitle("Incomplete Entry Error")
+           val_error.showMessage("Error! Please make sure both Dice Number and Dice Side have valid values.")
+           val_error.exec_()

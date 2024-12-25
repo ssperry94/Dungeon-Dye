@@ -99,7 +99,7 @@ class DiceFrame(QtWidgets.QWidget):
 
         self._output_browser = QtWidgets.QTextBrowser()
         # self._output_browser.setGeometry(QtCore.QRect(300, 260, 381, 75))
-        self._output_browser.setStyleSheet("color:white;border:1px solid black;")
+        self._output_browser.setStyleSheet("color:white;border:1px solid black;font-family:\"Copperplate Gothic Bold\"")
         self._output_browser.setObjectName("_output_browser")
         self._dice_layout.addWidget(self._output_browser, 7,0,1,3)
 
