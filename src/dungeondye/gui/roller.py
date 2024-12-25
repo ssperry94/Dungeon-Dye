@@ -15,7 +15,7 @@ class Dice:
                 roll = random.randint(1, actual_sides)
                 list.append(roll)
             final_roll = sum(list[0:])
-            print(f"Total roll: {final_roll}\nModifier: {actual_modifier}\nTotal: {final_roll + actual_modifier}")
-            # lbl.config(text = f"Roll: {sum(list[0:]) + modifier}")
+            #print(f"Total roll: {final_roll}\nModifier: {actual_modifier}\nTotal: {final_roll + actual_modifier}")
+            output.setText(f"Rolling {actual_num}d{actual_sides}\nTotal Roll: {final_roll}\nModifier: {actual_modifier}\nFinal Roll: {final_roll + actual_modifier}\n\n")
         except ValueError:
            print("ValueError Thrown")
