@@ -1,4 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+from dungeondye.gui import roller
 
 class DiceFrame(QtWidgets.QWidget):
     _dice_number_label:QtWidgets.QLabel = None 
@@ -114,6 +115,7 @@ class DiceFrame(QtWidgets.QWidget):
         self.roll_button.setIcon(icon)
         self.roll_button.setIconSize(QtCore.QSize(45,45))
         self._dice_layout.addWidget(self.roll_button, 6,1)
+        self.roll_button.clicked.connect(self.roll)
     
     def retranslateUi(self) -> None:
         _translate = QtCore.QCoreApplication.translate
@@ -134,3 +136,6 @@ class DiceFrame(QtWidgets.QWidget):
         self._dice_side_combo.setCurrentIndex(-1)
         self._modifiers_combo.addItems(modifiers_list)
 
+    def roll(self) -> None:
+        dice = roller.Dice()
+        dice.rolldice(self._output_browser, self._dice_number_combo, self._dice_side_combo, self._modifiers_combo)
