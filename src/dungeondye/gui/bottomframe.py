@@ -37,4 +37,16 @@ class ButtonFrame(QtWidgets.QWidget):
         self._settings_button.setStyleSheet("background-color:\"#FE2B26\";color:black;font-family:\"Copperplate Gothic Bold\"")
         self._settings_button.setObjectName("settings_button")
         self._settings_button.setFixedSize(self._button_height, self._button_width)
+        self._settings_button.clicked.connect(self.show_settings_menu)
         self._frame_layout.addWidget(self._settings_button)
+    
+    def show_save_menu(self):
+        pass 
+
+    #placeholder for settings menu
+    def show_settings_menu(self):
+        settings = QtWidgets.QMessageBox()
+        settings.setWindowTitle("Coming soon")
+        settings.setIcon(QtWidgets.QMessageBox.Information)
+        settings.setText("Settings comming soon!")
+        settings.exec_()
