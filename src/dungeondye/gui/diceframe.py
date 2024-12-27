@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from dungeondye.gui import roller
+from dungeondye.dice import roller
 
 class DiceFrame(QtWidgets.QWidget):
     _dice_number_label:QtWidgets.QLabel = None 
