@@ -1,4 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+import sys
 
 class ButtonFrame(QtWidgets.QWidget):
     _exit_button:QtWidgets.QPushButton
@@ -23,6 +24,7 @@ class ButtonFrame(QtWidgets.QWidget):
         self._exit_button.setStyleSheet("background-color:\"#FE2B26\";color:black;font-family:\"Copperplate Gothic Bold\"")
         self._exit_button.setObjectName("exit_button")
         self._exit_button.setFixedSize(self._button_height, self._button_width)
+        self._exit_button.clicked.connect(sys.exit)  #may need own exit function here 
         self._frame_layout.addWidget(self._exit_button)
 
         self._save_button = QtWidgets.QPushButton(text = "Save")
