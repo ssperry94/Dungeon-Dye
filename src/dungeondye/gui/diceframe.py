@@ -139,3 +139,13 @@ class DiceFrame(QtWidgets.QWidget):
     def roll(self) -> None:
         dice = roller.Dice()
         dice.rolldice(self._output_browser, self._dice_number_combo, self._dice_side_combo, self._modifiers_combo)
+
+    #currently:create value_error message box as its own class 
+    #get this into bottom frame
+    def get_current_combo_values(self) -> tuple:
+        try:
+            combo_values = (int(self._dice_number_combo.currentText()), int(self._dice_side_combo.currentText()), int(self._modifiers_combo.currentText()))
+            return combo_values
+        except ValueError:
+            #throw value error window
+            pass

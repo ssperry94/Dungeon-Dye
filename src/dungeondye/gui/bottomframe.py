@@ -1,5 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
+from dungeondye.gui import diceframe
 
 class ButtonFrame(QtWidgets.QWidget):
     _exit_button:QtWidgets.QPushButton
@@ -8,9 +9,10 @@ class ButtonFrame(QtWidgets.QWidget):
     _frame_layout:QtWidgets.QHBoxLayout
     _button_height:int = 85
     _button_width:int = 23
+    _dice_frame:diceframe.DiceFrame = None #used to get info when saving rolls 
 
-
-    def setupUI(self) -> None:
+    def setupUI(self, diceframe) -> None:
+        self._dice_frame = diceframe
         self.setObjectName("button_panel")
         self.setStyleSheet("background-color:rgb(35, 40, 48)\n"
 "")
@@ -31,6 +33,7 @@ class ButtonFrame(QtWidgets.QWidget):
         self._save_button.setStyleSheet("background-color:\"#FE2B26\";color:black;font-family:\"Copperplate Gothic Bold\"")
         self._save_button.setObjectName("save_button")
         self._save_button.setFixedSize(self._button_height, self._button_width)
+        self._save_button.clicked.connect(self.show_save_menu)
         self._frame_layout.addWidget(self._save_button)
 
         self._settings_button = QtWidgets.QPushButton(text = "Settings")
@@ -41,7 +44,8 @@ class ButtonFrame(QtWidgets.QWidget):
         self._frame_layout.addWidget(self._settings_button)
     
     def show_save_menu(self):
-        pass 
+        values = self._dice_frame.get_current_combo_values()
+        print(values)
 
     #placeholder for settings menu
     def show_settings_menu(self):

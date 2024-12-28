@@ -56,6 +56,6 @@ class MainMenu(object):
         dice_frame = diceframe.DiceFrame(main_window)
         button_frame = bottomframe.ButtonFrame(main_window)
         dice_frame.setupUi()
-        button_frame.setupUI()
+        button_frame.setupUI(dice_frame)
         self._layout.addWidget(dice_frame, alignment=QtCore.Qt.AlignCenter)
         self._layout.addWidget(button_frame, alignment=QtCore.Qt.AlignCenter)
