@@ -1,5 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from dungeondye.dice import roller
+from dungeondye.gui import valueerror
 
 class DiceFrame(QtWidgets.QWidget):
     _dice_number_label:QtWidgets.QLabel = None 
@@ -148,4 +149,5 @@ class DiceFrame(QtWidgets.QWidget):
             return combo_values
         except ValueError:
             #throw value error window
-            pass
+            val_error = valueerror.ErrorBox("Incomplete Information", "Error! Please ensure that the number of dice and the type of dye is entered correctly.")
+            val_error.show()
