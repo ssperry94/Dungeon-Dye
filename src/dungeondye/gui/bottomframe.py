@@ -45,6 +45,7 @@ class ButtonFrame(QtWidgets.QWidget):
     
     def show_save_menu(self):
         values = self._dice_frame.get_current_combo_values()
+        roll_name = 'test' #change when full gui is implemented
         print(values)
 
     #placeholder for settings menu
