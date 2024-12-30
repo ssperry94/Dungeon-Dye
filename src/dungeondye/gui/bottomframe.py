@@ -44,9 +44,11 @@ class ButtonFrame(QtWidgets.QWidget):
         self._frame_layout.addWidget(self._settings_button)
     
     def show_save_menu(self):
-        save_menu = savedmenu.SavedMenu()
-        save_menu.setupUi()
-        save_menu.show()
+        rolls = self._dice_frame.get_current_combo_values()
+        if rolls is not None:
+            save_menu = savedmenu.SavedMenu()
+            save_menu.setupUi(rolls)
+            save_menu.show()
 
     #placeholder for settings menu
     def show_settings_menu(self):

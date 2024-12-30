@@ -1,5 +1,5 @@
 from PyQt5 import QtWidgets, QtGui
-from dungeondye.gui import diceframe
+from dungeondye.utils import constants
 
 class SavedMenu(QtWidgets.QDialog):
     _dice_side_label:QtWidgets.QLabel = None
@@ -18,20 +18,20 @@ class SavedMenu(QtWidgets.QDialog):
 
     _layout:QtWidgets.QGridLayout = None  
 
-    def setupUi(self) -> None:
+    def setupUi(self, rolls:tuple) -> None:
         self.setObjectName("save_panel")
         self.setWindowTitle("Roll Saver")
         self.setStyleSheet("background-color:rgb(35, 40, 48)\n"
 "")
         self._layout = QtWidgets.QGridLayout(self)
-        self._initalize_widgets()
+        self._initalize_widgets(rolls)
         self._initalize_buttons()
         
 
     def show(self) -> None:
         self.exec_()
     
-    def _initalize_widgets(self) -> None:
+    def _initalize_widgets(self, rolls) -> None:
         self._dice_number_label = QtWidgets.QLabel(text = "Dice Number")
         font = QtGui.QFont()
         font.setFamily("Copperplate Gothic Bold")
@@ -48,7 +48,6 @@ class SavedMenu(QtWidgets.QDialog):
         self._layout.addWidget(self._dice_number_combo, 1, 1)
 
         self._dice_side_label = QtWidgets.QLabel("Dice Side")
-        # self._dice_side_label.setGeometry(QtCore.QRect(40, 100, 131, 20))
         font = QtGui.QFont()
         font.setFamily("Copperplate Gothic Bold")
         font.setPointSize(10)
@@ -59,13 +58,11 @@ class SavedMenu(QtWidgets.QDialog):
 
         self._dice_side_combo = QtWidgets.QComboBox()
         self._dice_side_combo.setEditable(True)
-        # self._dice_side_combo.setGeometry(QtCore.QRect(40, 130, 131, 22))
         self._dice_side_combo.setStyleSheet("color:\"white\"; background-color:\"#6A0DAD\"; border: 1px solid black ")
         self._dice_side_combo.setObjectName("_dice_side_combo")
         self._layout.addWidget(self._dice_side_combo, 3, 1)
 
         self._modifier_label = QtWidgets.QLabel("Modifier")
-        # self._modifier_label.setGeometry(QtCore.QRect(40, 160, 131, 20))
         font = QtGui.QFont()
         font.setFamily("Copperplate Gothic Bold")
         font.setPointSize(10)
@@ -76,7 +73,6 @@ class SavedMenu(QtWidgets.QDialog):
 
         self._modifiers_combo = QtWidgets.QComboBox()
         self._modifiers_combo.setEditable(True)
-        # self._modifiers_combo.setGeometry(QtCore.QRect(40, 180, 131, 22))
         self._modifiers_combo.setStyleSheet("color:\"white\"; background-color:\"#6A0DAD\"; border: 1px solid black ")
         self._modifiers_combo.setObjectName("_modifiers_combo")
         self._layout.addWidget(self._modifiers_combo, 5, 1)
@@ -95,18 +91,27 @@ class SavedMenu(QtWidgets.QDialog):
         self._roll_name_text.setObjectName("_roll_name_text")
         self._layout.addWidget(self._roll_name_text, 7, 1)
         
+        self._set_combos(rolls)
 
     def _initalize_buttons(self) -> None:
         self._exit_button = QtWidgets.QPushButton(text = "Exit")
         self._exit_button.setStyleSheet("background-color:\"#FE2B26\";color:black;font-family:\"Copperplate Gothic Bold\"")
         self._exit_button.setObjectName("exit_button")
         self._exit_button.setFixedSize(85, 23)
-        # self._exit_button.clicked.connect(sys.exit)  #may need own exit function here 
+        self._exit_button.clicked.connect(self.reject)
         self._layout.addWidget(self._exit_button, 8,0)
 
-        self._save_button = QtWidgets.QPushButton(text = "Save")
+        self._save_button = QtWidgets.QPushButton(text = "Confirm")
         self._save_button.setStyleSheet("background-color:\"#FE2B26\";color:black;font-family:\"Copperplate Gothic Bold\"")
         self._save_button.setObjectName("save_button")
         self._save_button.setFixedSize(85, 23)
         # self._save_button.clicked.connect(self.show_save_menu)
         self._layout.addWidget(self._save_button, 8, 2)
+
+    def _set_combos(self, rolls:tuple):
+        self._dice_number_combo.addItems(constants.DICE_NUM_LIST)
+        self._dice_number_combo.setCurrentText(str(rolls[0]))
+        self._dice_side_combo.addItems(constants.DICE_SIDE_LIST)
+        self._dice_side_combo.setCurrentText(str(rolls[1]))
+        self._modifiers_combo.addItems(constants.MODIFIER_LIST)
+        self._modifiers_combo.setCurrentText(str(rolls[2]))

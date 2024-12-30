@@ -1,6 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from dungeondye.dice import roller
 from dungeondye.gui import valueerror
+from dungeondye.utils import constants
 
 class DiceFrame(QtWidgets.QWidget):
     _dice_number_label:QtWidgets.QLabel = None 
@@ -127,15 +128,11 @@ class DiceFrame(QtWidgets.QWidget):
         self._saved_rolls_label.setText(_translate("dice_panel", "Saved Rolls"))
 
     def _populate_combos(self) -> None:
-        dice_num_list = [str(num) for num in range(1,101)] #number of dye possible
-        dice_side_list = ['4','6','8','10','12','20','100'] #standard dice sides 
-        modifiers_list = [str(num) for num in range(0,101)] #number you can modify
-
-        self._dice_number_combo.addItems(dice_num_list)
+        self._dice_number_combo.addItems(constants.DICE_NUM_LIST)
         self._dice_number_combo.setCurrentIndex(-1)
-        self._dice_side_combo.addItems(dice_side_list)
+        self._dice_side_combo.addItems(constants.DICE_SIDE_LIST)
         self._dice_side_combo.setCurrentIndex(-1)
-        self._modifiers_combo.addItems(modifiers_list)
+        self._modifiers_combo.addItems(constants.MODIFIER_LIST)
 
     def roll(self) -> None:
         dice = roller.Dice()
