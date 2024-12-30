@@ -1,6 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
-from dungeondye.gui import diceframe
+from dungeondye.gui import diceframe, savedmenu
 
 class ButtonFrame(QtWidgets.QWidget):
     _exit_button:QtWidgets.QPushButton
@@ -44,9 +44,9 @@ class ButtonFrame(QtWidgets.QWidget):
         self._frame_layout.addWidget(self._settings_button)
     
     def show_save_menu(self):
-        values = self._dice_frame.get_current_combo_values()
-        roll_name = 'test' #change when full gui is implemented
-        print(values)
+        save_menu = savedmenu.SavedMenu()
+        save_menu.setupUi()
+        save_menu.show()
 
     #placeholder for settings menu
     def show_settings_menu(self):
