@@ -1,5 +1,6 @@
 from PyQt5 import QtWidgets, QtGui
 from dungeondye.utils import constants
+from dungeondye.gui import valueerror
 
 class SavedMenu(QtWidgets.QDialog):
     _dice_side_label:QtWidgets.QLabel = None
@@ -105,13 +106,29 @@ class SavedMenu(QtWidgets.QDialog):
         self._save_button.setStyleSheet("background-color:\"#FE2B26\";color:black;font-family:\"Copperplate Gothic Bold\"")
         self._save_button.setObjectName("save_button")
         self._save_button.setFixedSize(85, 23)
-        # self._save_button.clicked.connect(self.show_save_menu)
+        self._save_button.clicked.connect(self._save)
         self._layout.addWidget(self._save_button, 8, 2)
 
-    def _set_combos(self, rolls:tuple):
+    def _set_combos(self, rolls:tuple) -> None:
         self._dice_number_combo.addItems(constants.DICE_NUM_LIST)
         self._dice_number_combo.setCurrentText(str(rolls[0]))
         self._dice_side_combo.addItems(constants.DICE_SIDE_LIST)
         self._dice_side_combo.setCurrentText(str(rolls[1]))
         self._modifiers_combo.addItems(constants.MODIFIER_LIST)
         self._modifiers_combo.setCurrentText(str(rolls[2]))
+
+    def _save(self) -> None:
+        #get current combo values (including name)
+        try:
+            rolls = (int(self._dice_number_combo.currentText()), int(self._dice_side_combo.currentText()), int(self._modifiers_combo.currentText()))
+            roll_name = self._roll_name_text.text()
+            if roll_name == '':
+                raise ValueError
+            print(rolls, "\n", roll_name)
+        except ValueError:
+            val_error = valueerror.ErrorBox("Incomplete Information", "Error! Please ensure that the number of dice and the type of dye is entered correctly.")
+            val_error.show()
+        #confirm name is correct
+        #append to saved roll's list 
+        #write that list to json
+        
