@@ -6,7 +6,14 @@ Need functionality for settings.json as well
 from dungeondye.dice import savedroll
 #path to the saved rolls json 
 SAVED_ROLLS_PATH:str = r'C:\Users\ssper\OneDrive\Projects\Table-Top-Dice-Roller\src\resources\jsons\saved_rolls.json'
-SAVED_ROLLS_LIST:savedroll.SavedRoll = []
+
+#list of all saved rolls 
+SAVED_ROLLS_LIST:savedroll.SavedRoll = [savedroll.SavedRoll((1,2,3),'test')]
+
+#exact spelling of keys of dictionary:
+DICENUM = "dicenumber"
+DICESIDE = "diceside"
+MODIFIER = "modifier"
 
 #list that contains dice numbers 
 DICE_NUM_LIST = [str(num) for num in range(1,101)] #number of dye possible
