@@ -1,5 +1,5 @@
 from PyQt5 import QtWidgets, QtGui
-from dungeondye.utils import constants
+from dungeondye.utils import constants, utilities
 from dungeondye.gui import valueerror
 
 class SavedMenu(QtWidgets.QDialog):
@@ -124,7 +124,7 @@ class SavedMenu(QtWidgets.QDialog):
             roll_name = self._roll_name_text.text()
             if roll_name == '':
                 raise ValueError
-            print(rolls, "\n", roll_name)
+            utilities.add_new_roll(rolls, roll_name)
         except ValueError:
             val_error = valueerror.ErrorBox("Incomplete Information", "Error! Please ensure that the number of dice and the type of dye is entered correctly.")
             val_error.show()

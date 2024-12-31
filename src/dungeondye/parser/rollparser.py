@@ -20,7 +20,3 @@ class RollParser:
             roll_dict.update({roll.roll_name : {constants.DICENUM : roll.dice_num, constants.DICESIDE : roll.dice_side, constants.MODIFIER : roll.modifier}})
 
         return roll_dict
-
-if __name__ == '__main__':
-    parser = RollParser()
-    print(parser.retrieve())

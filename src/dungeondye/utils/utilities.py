@@ -13,4 +13,3 @@ def add_new_roll(roll_info:tuple, roll_name:str):
     #write out list 
     parser = rollparser.RollParser()
     parser.upload() 
-    pass
