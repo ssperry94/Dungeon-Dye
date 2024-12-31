@@ -3,10 +3,14 @@ from dungeondye.utils import constants
 from dungeondye.dice import savedroll
 class RollParser:
 
-    def upload(self):
+    def upload(self) -> bool:
         saved_rolls_dict = self.format_saved_rolls()
         with open(constants.SAVED_ROLLS_PATH, 'w') as outfile:
             json.dump(saved_rolls_dict, outfile)
+        if saved_rolls_dict == self.retrieve():
+            return True 
+        else:
+            return False
 
     def retrieve(self) -> dict:
         roll_dict = {}

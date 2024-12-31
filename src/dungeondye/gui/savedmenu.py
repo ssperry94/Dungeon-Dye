@@ -124,7 +124,18 @@ class SavedMenu(QtWidgets.QDialog):
             roll_name = self._roll_name_text.text()
             if roll_name == '':
                 raise ValueError
-            utilities.add_new_roll(rolls, roll_name)
+            if utilities.add_new_roll(rolls, roll_name) == True:
+                success = QtWidgets.QMessageBox()
+                success.setIcon(QtWidgets.QMessageBox.Information)
+                success.setWindowTitle("Success")
+                success.setText("Roll successfully saved!")
+                success.exec_()
+
+            else:
+                error = valueerror.ErrorBox("Roll Save Fail", "Could not save roll")
+                error.show()
+            
+            self.reject()
         except ValueError:
             val_error = valueerror.ErrorBox("Incomplete Information", "Error! Please ensure that the number of dice and the type of dye is entered correctly.")
             val_error.show()
