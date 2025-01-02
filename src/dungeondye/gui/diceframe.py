@@ -164,6 +164,15 @@ class DiceFrame(QtWidgets.QWidget):
         
         saved_roll:savedroll.SavedRoll = utilities.search_saved_rolls(roll_name)
 
+        #if wrong name is entered, ensure that it doesn't get saved to combo box
+        if saved_roll is None:
+            items = [self._saved_roll_combo.itemText(i) for i in range(self._saved_roll_combo.count())]
+            for i, roll in enumerate(items):
+                if roll == roll_name:
+                    self._saved_roll_combo.removeItem(i)
+
+            return
+        
         #set other comboboxes 
         self._dice_number_combo.setCurrentText(str(saved_roll.dice_num))
         self._dice_side_combo.setCurrentText(str(saved_roll.dice_side))
