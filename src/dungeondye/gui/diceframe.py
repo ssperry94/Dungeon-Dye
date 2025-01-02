@@ -145,6 +145,4 @@ class DiceFrame(QtWidgets.QWidget):
             combo_values = (int(self._dice_number_combo.currentText()), int(self._dice_side_combo.currentText()), int(self._modifiers_combo.currentText()))
             return combo_values
         except ValueError:
-            #throw value error window
-            val_error = valueerror.ErrorBox("Incomplete Information", "Error! Please ensure that the number of dice and the type of dye is entered correctly.")
-            val_error.show()
+            return None

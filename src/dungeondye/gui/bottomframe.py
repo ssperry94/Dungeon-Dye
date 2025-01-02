@@ -45,10 +45,14 @@ class ButtonFrame(QtWidgets.QWidget):
     
     def show_save_menu(self):
         rolls = self._dice_frame.get_current_combo_values()
-        if rolls is not None:
-            save_menu = savedmenu.SavedMenu()
-            save_menu.setupUi(rolls)
-            save_menu.show()
+
+        #if error was thrown, set dice number, side, and mod to 0
+        if rolls is None:
+            rolls = (0,0,0)
+
+        save_menu = savedmenu.SavedMenu()
+        save_menu.setupUi(rolls)
+        save_menu.show()
 
     #placeholder for settings menu
     def show_settings_menu(self):
