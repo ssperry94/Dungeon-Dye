@@ -159,6 +159,9 @@ class DiceFrame(QtWidgets.QWidget):
         #get info from whatever current combobox is at
         roll_name = self._saved_roll_combo.currentText()
         if roll_name == '':
+            self._dice_number_combo.setCurrentIndex(-1)
+            self._dice_side_combo.setCurrentIndex(-1)
+            self._modifiers_combo.setCurrentIndex(0)
             return 
         
         saved_roll:savedroll.SavedRoll = utilities.search_saved_rolls(roll_name)

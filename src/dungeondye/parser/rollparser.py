@@ -14,7 +14,10 @@ class RollParser:
     def retrieve(self) -> dict:
         roll_dict = {}
         with open(constants.SAVED_ROLLS_PATH, 'r') as infile:
-            roll_dict = json.load(infile)
+            try:
+                roll_dict = json.load(infile)
+            except ValueError:
+                pass
         return roll_dict
     
     def format_saved_rolls(self) -> dict:
