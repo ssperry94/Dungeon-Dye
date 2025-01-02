@@ -13,3 +13,8 @@ def add_new_roll(roll_info:tuple, roll_name:str) -> bool:
     #write out list 
     parser = rollparser.RollParser()
     return parser.upload() 
+
+def search_saved_rolls(name:str) -> savedroll.SavedRoll:
+    for roll in constants.SAVED_ROLLS_LIST:
+        if roll.roll_name == name:
+            return roll

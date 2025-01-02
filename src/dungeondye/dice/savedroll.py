@@ -1,5 +1,3 @@
-import json 
-from dungeondye.utils import constants
 
 class SavedRoll:
     dice_num:int = None

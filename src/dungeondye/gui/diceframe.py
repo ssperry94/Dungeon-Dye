@@ -1,7 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from dungeondye.dice import roller
+from dungeondye.dice import roller, savedroll
 from dungeondye.gui import valueerror
-from dungeondye.utils import constants
+from dungeondye.utils import constants, utilities
 
 class DiceFrame(QtWidgets.QWidget):
     _dice_number_label:QtWidgets.QLabel = None 
@@ -134,7 +134,8 @@ class DiceFrame(QtWidgets.QWidget):
         self._dice_side_combo.setCurrentIndex(-1)
         self._modifiers_combo.addItems(constants.MODIFIER_LIST)
         self.update_saved_rolls()
-        self._saved_roll_combo.setCurrentIndex(-1)
+
+        self._saved_roll_combo.activated.connect(self._show_saved_roll)
 
     def update_saved_rolls(self) -> None:
             self._saved_roll_combo.clear()
@@ -154,3 +155,16 @@ class DiceFrame(QtWidgets.QWidget):
             return combo_values
         except ValueError:
             return None
+    
+    def _show_saved_roll(self) -> None:
+        #get info from whatever current combobox is at
+        roll_name = self._saved_roll_combo.currentText()
+        if roll_name == '':
+            return 
+        
+        saved_roll:savedroll.SavedRoll = utilities.search_saved_rolls(roll_name)
+
+        #set other comboboxes 
+        self._dice_number_combo.setCurrentText(str(saved_roll.dice_num))
+        self._dice_side_combo.setCurrentText(str(saved_roll.dice_side))
+        self._modifiers_combo.setCurrentText(str(saved_roll.modifier))
