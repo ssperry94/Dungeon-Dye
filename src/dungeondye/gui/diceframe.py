@@ -1,6 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from dungeondye.dice import roller, savedroll
-from dungeondye.gui import valueerror
 from dungeondye.utils import constants, utilities
 
 class DiceFrame(QtWidgets.QWidget):

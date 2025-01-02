@@ -1,5 +1,5 @@
 import random 
-from PyQt5.QtWidgets import QTextBrowser, QComboBox, QMessageBox
+from PyQt5.QtWidgets import QTextBrowser, QComboBox
 from dungeondye.gui import valueerror
 class Dice: 
     def __init__(self) -> None:

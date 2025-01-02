@@ -1,6 +1,5 @@
 import json 
 from dungeondye.utils import constants
-from dungeondye.dice import savedroll
 class RollParser:
 
     def upload(self) -> bool:
