@@ -18,3 +18,16 @@ def search_saved_rolls(name:str) -> savedroll.SavedRoll:
     for roll in constants.SAVED_ROLLS_LIST:
         if roll.roll_name == name:
             return roll
+
+def create_saved_rolls_list() -> list:
+    saved_roll_list:list = []
+    parser = rollparser.RollParser()
+    roll_info:dict = parser.retrieve()
+
+    for key, value in roll_info.items():
+        roll_name = key
+        roll_tuple = (value.get(constants.DICENUM), value.get(constants.DICESIDE), value.get(constants.MODIFIER))
+        saved_roll = savedroll.SavedRoll(roll_tuple, roll_name)
+        saved_roll_list.append(saved_roll)
+
+    return saved_roll_list
