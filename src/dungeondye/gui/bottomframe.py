@@ -53,6 +53,7 @@ class ButtonFrame(QtWidgets.QWidget):
         save_menu = savedmenu.SavedMenu()
         save_menu.setupUi(rolls)
         save_menu.show()
+        self._dice_frame.update_saved_rolls()
 
     #placeholder for settings menu
     def show_settings_menu(self):

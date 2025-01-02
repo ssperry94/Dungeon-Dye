@@ -135,8 +135,10 @@ class DiceFrame(QtWidgets.QWidget):
         self._modifiers_combo.addItems(constants.MODIFIER_LIST)
         self.update_saved_rolls()
         self._saved_roll_combo.setCurrentIndex(-1)
-        
+
     def update_saved_rolls(self) -> None:
+            self._saved_roll_combo.clear()
+            self._saved_roll_combo.addItem('')
             for roll in constants.SAVED_ROLLS_LIST:
                 self._saved_roll_combo.addItem(roll.roll_name)
                 
