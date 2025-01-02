@@ -133,7 +133,13 @@ class DiceFrame(QtWidgets.QWidget):
         self._dice_side_combo.addItems(constants.DICE_SIDE_LIST)
         self._dice_side_combo.setCurrentIndex(-1)
         self._modifiers_combo.addItems(constants.MODIFIER_LIST)
-
+        self.update_saved_rolls()
+        self._saved_roll_combo.setCurrentIndex(-1)
+        
+    def update_saved_rolls(self) -> None:
+            for roll in constants.SAVED_ROLLS_LIST:
+                self._saved_roll_combo.addItem(roll.roll_name)
+                
     def roll(self) -> None:
         dice = roller.Dice()
         dice.rolldice(self._output_browser, self._dice_number_combo, self._dice_side_combo, self._modifiers_combo)
