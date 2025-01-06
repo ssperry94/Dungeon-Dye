@@ -1,20 +1,22 @@
 from PyQt5 import QtCore, QtWidgets
 from dungeondye.utils import constants, utilities
-from dungeondye.gui import messagebox
+from dungeondye.gui import messagebox, diceframe
 
 #all tab widgets defined before SettingMenu 
 class _DiceSettings(QtWidgets.QWidget):
+    _dice_frame:diceframe.DiceFrame = None
     _layout:QtWidgets.QGridLayout = None
     _widget_list:list = [] #contains all buttons and roll names
     _roll_container:QtWidgets.QGroupBox = None #a scrollable box that contains all rolls and check button 
     _clear_button:QtWidgets.QPushButton = None #button that clears all saved rolls 
     _delete_button:QtWidgets.QPushButton = None #button that deletes all selected rolls
 
-    def setupUi(self):
+    def setupUi(self, dice_frame:diceframe.DiceFrame):
         self.setObjectName("dice_settings")
         self.setStyleSheet("background-color:rgb(35, 40, 48)\n"
 "")
         self._layout = QtWidgets.QGridLayout(self)
+        self._dice_frame = dice_frame
         self._initalize_roll_container()
         self._initalize_buttons()
 
@@ -57,9 +59,10 @@ class _DiceSettings(QtWidgets.QWidget):
     def _confirm_clear_rolls(self, result): #get confirmation and attempt to delete all rolls
         if result == QtWidgets.QMessageBox.Yes:
             if utilities.clear_saved_rolls() == True:
+                self._initalize_roll_container() #reset saved rolls in settings menu 
+                self._dice_frame.update_saved_rolls() #update dice frame
                 success = messagebox.MessageBox("Success", "All saved rolls deleted.", information = True)
                 success.show()
-                self._populate_roll_container(QtWidgets.QVBoxLayout())
             else:
                 fail = messagebox.MessageBox("Error", "Error encountered, saved rolls could not be deleted.", error = True)
                 fail.show()
@@ -68,20 +71,22 @@ class _DiceSettings(QtWidgets.QWidget):
             message.show()
     
 class SettingsMenu(QtWidgets.QDialog):
+    _dice_frame:diceframe.DiceFrame = None 
     _tab_widget:QtWidgets.QTabWidget = None
     _dice_tab:QtWidgets.QWidget = None 
     _layout:QtWidgets.QVBoxLayout = None
     #add more tabs here as needed 
     _close_bttn:QtWidgets.QPushButton = None
 
-    def setupUi(self) -> None:
+    def setupUi(self, dice_frame:diceframe.DiceFrame) -> None:
         self.setObjectName("settings_menu")
         self.setWindowTitle("Settings")
         self.setStyleSheet("background-color:rgb(35, 40, 48)\n"
 "")
         self._tab_widget = QtWidgets.QTabWidget()
         self._layout = QtWidgets.QGridLayout(self)
-        self._initalize_tabs()
+        self._dice_frame = dice_frame
+        self._initalize_tabs(dice_frame)
         self._initalize_buttons()
         self._layout.addWidget(self._tab_widget, 0, 0)
         self._layout.addWidget(self._close_bttn, 1,0, alignment=QtCore.Qt.AlignHCenter)
@@ -89,9 +94,9 @@ class SettingsMenu(QtWidgets.QDialog):
     def show(self) -> None:
         self.exec_()
 
-    def _initalize_tabs(self) -> None:
+    def _initalize_tabs(self, dice_frame) -> None:
         self._dice_tab = _DiceSettings()
-        self._dice_tab.setupUi()
+        self._dice_tab.setupUi(dice_frame)
         self._tab_widget.addTab(self._dice_tab, "Roll Manager")
 
     def _initalize_buttons(self) -> None:

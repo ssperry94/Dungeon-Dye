@@ -57,5 +57,5 @@ class ButtonFrame(QtWidgets.QWidget):
 
     def show_settings_menu(self):
         settings = settingsmenu.SettingsMenu()
-        settings.setupUi()
+        settings.setupUi(self._dice_frame)
         settings.show()
