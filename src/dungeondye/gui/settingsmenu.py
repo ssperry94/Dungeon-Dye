@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtWidgets
-from dungeondye.utils import constants
+from dungeondye.utils import constants, utilities
 
 #all tab widgets defined before SettingMenu 
 class _DiceSettings(QtWidgets.QWidget):
@@ -35,6 +35,7 @@ class _DiceSettings(QtWidgets.QWidget):
         self._clear_button = QtWidgets.QPushButton(text = "Clear")
         self._clear_button.setObjectName("clear_button")
         self._clear_button.setFixedSize(85,23)
+        self._clear_button.clicked.connect(self.clear_rolls)
         self._layout.addWidget(self._clear_button, 1,0)
 
         self._delete_button = QtWidgets.QPushButton(text = "Delete")
@@ -42,6 +43,8 @@ class _DiceSettings(QtWidgets.QWidget):
         self._delete_button.setFixedSize(85,23)
         self._layout.addWidget(self._delete_button, 1,2)
 
+    def clear_rolls(self):
+        utilities.clear_saved_rolls()
     
 class SettingsMenu(QtWidgets.QDialog):
     _tab_widget:QtWidgets.QTabWidget = None

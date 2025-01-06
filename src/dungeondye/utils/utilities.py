@@ -32,3 +32,8 @@ def create_saved_rolls_list() -> list:
         saved_roll_list.append(saved_roll)
 
     return saved_roll_list
+
+def clear_saved_rolls():
+    constants.SAVED_ROLLS_LIST.clear()
+    parser = rollparser.RollParser()
+    parser.upload()
