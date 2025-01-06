@@ -1,5 +1,6 @@
 from PyQt5 import QtCore, QtWidgets
 from dungeondye.utils import constants, utilities
+from dungeondye.gui import messagebox
 
 #all tab widgets defined before SettingMenu 
 class _DiceSettings(QtWidgets.QWidget):
@@ -44,7 +45,27 @@ class _DiceSettings(QtWidgets.QWidget):
         self._layout.addWidget(self._delete_button, 1,2)
 
     def clear_rolls(self):
-        utilities.clear_saved_rolls()
+        confirm = QtWidgets.QMessageBox()
+        confirm.setIcon(QtWidgets.QMessageBox.Warning)
+        confirm.setWindowTitle("Confirm Deletion")
+        confirm.setText("WARNING! This action will permanently delete all saved rolls. Are you sure you wish to proceed?")
+        confirm.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
+        confirm.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Yes)
+        result = confirm.exec_()
+        self._confirm_clear_rolls(result)
+    
+    def _confirm_clear_rolls(self, result): #get confirmation and attempt to delete all rolls
+        if result == QtWidgets.QMessageBox.Yes:
+            if utilities.clear_saved_rolls() == True:
+                success = messagebox.MessageBox("Success", "All saved rolls deleted.", information = True)
+                success.show()
+                self._populate_roll_container(QtWidgets.QVBoxLayout())
+            else:
+                fail = messagebox.MessageBox("Error", "Error encountered, saved rolls could not be deleted.", error = True)
+                fail.show()
+        else:
+            message = messagebox.MessageBox("No Rolls Deleted", "No rolls were deleted.", information = True)
+            message.show()
     
 class SettingsMenu(QtWidgets.QDialog):
     _tab_widget:QtWidgets.QTabWidget = None
