@@ -1,6 +1,6 @@
 import random 
 from PyQt5.QtWidgets import QTextBrowser, QComboBox
-from dungeondye.gui import valueerror
+from dungeondye.gui import messagebox
 class Dice: 
     def __init__(self) -> None:
         pass 
@@ -17,6 +17,6 @@ class Dice:
             final_roll = sum(list[0:])
             output.setText(f"Rolling {actual_num}d{actual_sides}\nTotal Roll: {final_roll}\nModifier: {actual_modifier}\nFinal Roll: {final_roll + actual_modifier}\n\n")
         except ValueError:
-           val_err = valueerror.ErrorBox("Incomplete Information", "Error! Please ensure that the number of dice and the type of dye is entered correctly.")
+           val_err = messagebox.MessageBox("Incomplete Information", "Error! Please ensure that the number of dice and the type of dye is entered correctly.", error = True)
            val_err.show()
 

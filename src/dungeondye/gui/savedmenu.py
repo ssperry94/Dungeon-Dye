@@ -1,6 +1,6 @@
 from PyQt5 import QtWidgets, QtGui
 from dungeondye.utils import constants, utilities
-from dungeondye.gui import valueerror
+from dungeondye.gui import messagebox
 
 class SavedMenu(QtWidgets.QDialog):
     _dice_side_label:QtWidgets.QLabel = None
@@ -125,19 +125,16 @@ class SavedMenu(QtWidgets.QDialog):
             if roll_name == '':
                 raise ValueError
             if utilities.add_new_roll(rolls, roll_name) == True:
-                success = QtWidgets.QMessageBox()
-                success.setIcon(QtWidgets.QMessageBox.Information)
-                success.setWindowTitle("Success")
-                success.setText("Roll successfully saved!")
-                success.exec_()
+                success = messagebox.MessageBox("Success", "Roll Successfully Saved!", information = True)
+                success.show()
 
             else:
-                error = valueerror.ErrorBox("Roll Save Fail", "Could not save roll")
+                error = messagebox.MessageBox("Roll Save Fail", "Could not save roll", error = True)
                 error.show()
             
             self.reject()
         except ValueError:
-            val_error = valueerror.ErrorBox("Incomplete Information", "Error! Please ensure that the number of dice and the type of dye is entered correctly.")
+            val_error = messagebox.MessageBox("Incomplete Information", "Error! Please ensure that the number of dice and the type of dye is entered correctly.", error = True)
             val_error.show()
         #confirm name is correct
         #append to saved roll's list 
