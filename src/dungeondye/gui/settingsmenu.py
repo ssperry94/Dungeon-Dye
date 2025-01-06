@@ -1,4 +1,4 @@
-from PyQt5 import QtWidgets
+from PyQt5 import QtCore, QtWidgets
 from dungeondye.utils import constants
 
 #all tab widgets defined before SettingMenu 
@@ -17,35 +17,38 @@ class _DiceSettings(QtWidgets.QWidget):
         self._initalize_roll_container()
         self._initalize_buttons()
 
-    # def _set_widget_list(self):
-    #     for roll in constants.SAVED_ROLLS_LIST:
-    #         roll_checkbx = QtWidgets.QRadioButton(roll.roll_name)
-    #         self._widget_list.append(roll_checkbx)
-
     def _populate_roll_container(self, layout:QtWidgets.QVBoxLayout):
         for roll in constants.SAVED_ROLLS_LIST:
-            roll_btn = QtWidgets.QRadioButton(roll.roll_name)
+            roll_btn = QtWidgets.QCheckBox(roll.roll_name)
+            self._widget_list.append(roll_btn)
             layout.addWidget(roll_btn)
 
     def _initalize_roll_container(self):
         self._roll_container = QtWidgets.QGroupBox()
         roll_layout = QtWidgets.QVBoxLayout(self._roll_container)
 
-        #set widget_list - may not need
-        #self._set_widget_list()
-
         self._populate_roll_container(roll_layout)
-        self._layout.addWidget(self._roll_container, 0,0)
+        self._layout.addWidget(self._roll_container, 0,1)
 
 
     def _initalize_buttons(self):
-        pass
+        self._clear_button = QtWidgets.QPushButton(text = "Clear")
+        self._clear_button.setObjectName("clear_button")
+        self._clear_button.setFixedSize(85,23)
+        self._layout.addWidget(self._clear_button, 1,0)
+
+        self._delete_button = QtWidgets.QPushButton(text = "Delete")
+        self._delete_button.setObjectName("delete_button")
+        self._delete_button.setFixedSize(85,23)
+        self._layout.addWidget(self._delete_button, 1,2)
+
     
 class SettingsMenu(QtWidgets.QDialog):
     _tab_widget:QtWidgets.QTabWidget = None
     _dice_tab:QtWidgets.QWidget = None 
     _layout:QtWidgets.QVBoxLayout = None
     #add more tabs here as needed 
+    _close_bttn:QtWidgets.QPushButton = None
 
     def setupUi(self) -> None:
         self.setObjectName("settings_menu")
@@ -53,9 +56,11 @@ class SettingsMenu(QtWidgets.QDialog):
         self.setStyleSheet("background-color:rgb(35, 40, 48)\n"
 "")
         self._tab_widget = QtWidgets.QTabWidget()
-        self._layout = QtWidgets.QVBoxLayout(self)
+        self._layout = QtWidgets.QGridLayout(self)
         self._initalize_tabs()
-        self._layout.addWidget(self._tab_widget)
+        self._initalize_buttons()
+        self._layout.addWidget(self._tab_widget, 0, 0)
+        self._layout.addWidget(self._close_bttn, 1,0, alignment=QtCore.Qt.AlignHCenter)
 
     def show(self) -> None:
         self.exec_()
@@ -64,3 +69,9 @@ class SettingsMenu(QtWidgets.QDialog):
         self._dice_tab = _DiceSettings()
         self._dice_tab.setupUi()
         self._tab_widget.addTab(self._dice_tab, "Roll Manager")
+
+    def _initalize_buttons(self) -> None:
+        self._close_bttn = QtWidgets.QPushButton(text = "Close")
+        self._close_bttn.setObjectName("close_button")
+        self._close_bttn.setFixedSize(85,23)
+        self._close_bttn.clicked.connect(self.reject)
