@@ -21,6 +21,9 @@ class _DiceSettings(QtWidgets.QWidget):
         self._initalize_buttons()
 
     def _populate_roll_container(self, layout:QtWidgets.QVBoxLayout):
+        if self._widget_list is not None:
+            self._widget_list.clear()
+
         for roll in constants.SAVED_ROLLS_LIST:
             roll_btn = QtWidgets.QCheckBox(roll.roll_name)
             self._widget_list.append(roll_btn)
@@ -44,7 +47,7 @@ class _DiceSettings(QtWidgets.QWidget):
         self._delete_button = QtWidgets.QPushButton(text = "Delete")
         self._delete_button.setObjectName("delete_button")
         self._delete_button.setFixedSize(85,23)
-        self._delete_button.clicked.connect(self._confirm_delete_rolls) #change to a method that brings a confirmation screen
+        self._delete_button.clicked.connect(self.delete_rolls) #change to a method that brings a confirmation screen
         self._layout.addWidget(self._delete_button, 1,2)
 
     def clear_rolls(self):
@@ -71,16 +74,27 @@ class _DiceSettings(QtWidgets.QWidget):
             message = messagebox.MessageBox("No Rolls Deleted", "No rolls were deleted.", information = True)
             message.show()
 
-    def _confirm_delete_rolls(self) -> bool:
-        for roll in self._widget_list:
-            if roll.isChecked() == True:
-                roll_index = utilities.find_roll_index(roll.text())
-                if roll_index >= 0:
-                    if utilities.remove_roll(roll_index) == False:
-                        return False
-                else:
-                    return False 
+    def delete_rolls(self):
+        deleted_rolls = [roll.text() for roll in self._widget_list if roll.isChecked()]
+        confirm = QtWidgets.QMessageBox()
+        confirm.setIcon(QtWidgets.QMessageBox.Warning)
+        confirm.setWindowTitle("Confirm Deletion")
+        confirm.setText("WARNING! This action will delete the following rolls: . Are you sure you wish to proceed?")
+        confirm.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
+        confirm.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Yes)
+        result = confirm.exec_()
+        self._confirm_delete_rolls(deleted_rolls, result)
 
+    def _confirm_delete_rolls(self, deleted_rolls:list, result) -> bool:
+        for roll in deleted_rolls:
+            roll_index = utilities.find_roll_index(roll)
+            if roll_index >= 0:
+                if utilities.remove_roll(roll_index) == False:
+                    return False
+            else:
+                return False 
+        self._initalize_roll_container() #reset saved rolls in settings menu 
+        self._dice_frame.update_saved_rolls() #update dice frame
         return True                
 
 
@@ -105,8 +119,8 @@ class SettingsMenu(QtWidgets.QDialog):
         self._layout.addWidget(self._tab_widget, 0, 0)
         self._layout.addWidget(self._close_bttn, 1,0, alignment=QtCore.Qt.AlignHCenter)
 
-    def show(self) -> None:
-        self.exec_()
+    # def show(self) -> None:        
+    #     self.exec_()
 
     def _initalize_tabs(self, dice_frame) -> None:
         self._dice_tab = _DiceSettings()
@@ -118,3 +132,10 @@ class SettingsMenu(QtWidgets.QDialog):
         self._close_bttn.setObjectName("close_button")
         self._close_bttn.setFixedSize(85,23)
         self._close_bttn.clicked.connect(self.reject)
+
+    #overwrite of close event to ensure dice settings is properly cleaned up 
+    def closeEvent(self, a0):
+        self._dice_tab = None
+        self._dice_frame = None 
+        self.deleteLater()
+        super().closeEvent(a0)
