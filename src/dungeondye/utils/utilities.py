@@ -37,3 +37,18 @@ def clear_saved_rolls() -> bool:
     constants.SAVED_ROLLS_LIST.clear()
     parser = rollparser.RollParser()
     return parser.upload()
+
+def find_roll_index(name:str) -> int:
+    for index, roll in enumerate(constants.SAVED_ROLLS_LIST):
+        if roll.roll_name == name:
+            return index 
+    
+    return -1 #roll couldn't be found
+
+def remove_roll(index:int) -> bool:
+    try:
+        constants.SAVED_ROLLS_LIST.pop(index)
+        parser = rollparser.RollParser()
+        return parser.upload()
+    except IndexError:
+        return False

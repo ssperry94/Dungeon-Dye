@@ -44,6 +44,7 @@ class _DiceSettings(QtWidgets.QWidget):
         self._delete_button = QtWidgets.QPushButton(text = "Delete")
         self._delete_button.setObjectName("delete_button")
         self._delete_button.setFixedSize(85,23)
+        self._delete_button.clicked.connect(self._confirm_delete_rolls) #change to a method that brings a confirmation screen
         self._layout.addWidget(self._delete_button, 1,2)
 
     def clear_rolls(self):
@@ -69,7 +70,20 @@ class _DiceSettings(QtWidgets.QWidget):
         else:
             message = messagebox.MessageBox("No Rolls Deleted", "No rolls were deleted.", information = True)
             message.show()
-    
+
+    def _confirm_delete_rolls(self) -> bool:
+        for roll in self._widget_list:
+            if roll.isChecked() == True:
+                roll_index = utilities.find_roll_index(roll.text())
+                if roll_index >= 0:
+                    if utilities.remove_roll(roll_index) == False:
+                        return False
+                else:
+                    return False 
+
+        return True                
+
+
 class SettingsMenu(QtWidgets.QDialog):
     _dice_frame:diceframe.DiceFrame = None 
     _tab_widget:QtWidgets.QTabWidget = None
