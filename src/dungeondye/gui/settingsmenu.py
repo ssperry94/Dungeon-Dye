@@ -76,26 +76,32 @@ class _DiceSettings(QtWidgets.QWidget):
 
     def delete_rolls(self):
         deleted_rolls = [roll.text() for roll in self._widget_list if roll.isChecked()]
+        deleted_rolls_output = "\n".join(deleted_rolls)
         confirm = QtWidgets.QMessageBox()
         confirm.setIcon(QtWidgets.QMessageBox.Warning)
         confirm.setWindowTitle("Confirm Deletion")
-        confirm.setText("WARNING! This action will delete the following rolls: . Are you sure you wish to proceed?")
+        confirm.setText(f"WARNING! This action will delete the following rolls:\n{deleted_rolls_output}\nAre you sure you wish to proceed?")
         confirm.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
         confirm.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Yes)
         result = confirm.exec_()
         self._confirm_delete_rolls(deleted_rolls, result)
 
     def _confirm_delete_rolls(self, deleted_rolls:list, result) -> bool:
-        for roll in deleted_rolls:
-            roll_index = utilities.find_roll_index(roll)
-            if roll_index >= 0:
-                if utilities.remove_roll(roll_index) == False:
-                    return False
-            else:
-                return False 
-        self._initalize_roll_container() #reset saved rolls in settings menu 
-        self._dice_frame.update_saved_rolls() #update dice frame
-        return True                
+        if result == QtWidgets.QMessageBox.Yes:
+            for roll in deleted_rolls:
+                roll_index = utilities.find_roll_index(roll)
+                if roll_index >= 0:
+                    if utilities.remove_roll(roll_index) == False:
+                        return False
+                else:
+                    return False 
+            self._initalize_roll_container() #reset saved rolls in settings menu 
+            self._dice_frame.update_saved_rolls() #update dice frame
+            return True    
+        else:
+            message = messagebox.MessageBox("No Rolls Deleted", "No rolls were deleted.", information = True)
+            message.show()
+
 
 
 class SettingsMenu(QtWidgets.QDialog):
