@@ -13,7 +13,7 @@ class _DiceSettings(QtWidgets.QWidget):
 
     def setupUi(self, dice_frame:diceframe.DiceFrame):
         self.setObjectName("dice_settings")
-        self.setStyleSheet("background-color:rgb(35, 40, 48)\n"
+        self.setStyleSheet(f"background-color:{constants.APP_BACKGROUND_COLOR}\n"
 "")
         self._layout = QtWidgets.QGridLayout(self)
         self._dice_frame = dice_frame
@@ -109,7 +109,7 @@ class SettingsMenu(QtWidgets.QDialog):
     def setupUi(self, dice_frame:diceframe.DiceFrame) -> None:
         self.setObjectName("settings_menu")
         self.setWindowTitle("Settings")
-        self.setStyleSheet("background-color:rgb(35, 40, 48)\n"
+        self.setStyleSheet(f"background-color:{constants.APP_BACKGROUND_COLOR}\n"
 "")
         self._tab_widget = QtWidgets.QTabWidget()
         self._layout = QtWidgets.QGridLayout(self)
