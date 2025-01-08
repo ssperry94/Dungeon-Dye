@@ -27,6 +27,7 @@ class _DiceSettings(QtWidgets.QWidget):
 
         for roll in constants.SAVED_ROLLS_LIST:
             roll_btn = QtWidgets.QCheckBox(roll.roll_name)
+            roll_btn.setStyleSheet(f"color:\"#a9a9a9\";font-family:\"Copperplate Gothic Bold\"")
             self._widget_list.append(roll_btn)
             layout.addWidget(roll_btn)
 
