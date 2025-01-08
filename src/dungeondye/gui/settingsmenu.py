@@ -39,12 +39,14 @@ class _DiceSettings(QtWidgets.QWidget):
 
     def _initalize_buttons(self):
         self._clear_button = QtWidgets.QPushButton(text = "Clear")
+        self._clear_button.setStyleSheet(f"background-color:\"{constants.BUTTON_COLOR}\";color:black;font-family:\"Copperplate Gothic Bold\"")
         self._clear_button.setObjectName("clear_button")
         self._clear_button.setFixedSize(85,23)
         self._clear_button.clicked.connect(self.clear_rolls)
         self._layout.addWidget(self._clear_button, 1,0)
 
         self._delete_button = QtWidgets.QPushButton(text = "Delete")
+        self._delete_button.setStyleSheet(f"background-color:\"{constants.BUTTON_COLOR}\";color:black;font-family:\"Copperplate Gothic Bold\"")
         self._delete_button.setObjectName("delete_button")
         self._delete_button.setFixedSize(85,23)
         self._delete_button.clicked.connect(self.delete_rolls) #change to a method that brings a confirmation screen
@@ -135,6 +137,7 @@ class SettingsMenu(QtWidgets.QDialog):
 
     def _initalize_buttons(self) -> None:
         self._close_bttn = QtWidgets.QPushButton(text = "Close")
+        self._close_bttn.setStyleSheet(f"background-color:\"{constants.BUTTON_COLOR}\";color:black;font-family:\"Copperplate Gothic Bold\"")
         self._close_bttn.setObjectName("close_button")
         self._close_bttn.setFixedSize(85,23)
         self._close_bttn.clicked.connect(self.reject)
