@@ -8,6 +8,7 @@ class _DiceSettings(QtWidgets.QWidget):
     _layout:QtWidgets.QGridLayout = None
     _widget_list:list = [] #contains all buttons and roll names
     _roll_container:QtWidgets.QGroupBox = None #a scrollable box that contains all rolls and check button 
+    _scrollbar:QtWidgets.QScrollArea = None
     _clear_button:QtWidgets.QPushButton = None #button that clears all saved rolls 
     _delete_button:QtWidgets.QPushButton = None #button that deletes all selected rolls
 
@@ -31,10 +32,19 @@ class _DiceSettings(QtWidgets.QWidget):
 
     def _initalize_roll_container(self):
         self._roll_container = QtWidgets.QGroupBox()
+        # self._roll_container.setMaximumSize(400,300)
         roll_layout = QtWidgets.QVBoxLayout(self._roll_container)
 
+        self._scrollbar = QtWidgets.QScrollArea()
+        self._scrollbar.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
+        self._scrollbar.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
+        self._scrollbar.setWidgetResizable(True)
+    
         self._populate_roll_container(roll_layout)
-        self._layout.addWidget(self._roll_container, 0,1)
+        self._scrollbar.setWidget(self._roll_container)
+        self._scrollbar.setMaximumHeight(300)
+        self._scrollbar.setMaximumWidth(300)
+        self._layout.addWidget(self._scrollbar, 0,1)
 
 
     def _initalize_buttons(self):
@@ -126,9 +136,6 @@ class SettingsMenu(QtWidgets.QDialog):
         self._initalize_buttons()
         self._layout.addWidget(self._tab_widget, 0, 0)
         self._layout.addWidget(self._close_bttn, 1,0, alignment=QtCore.Qt.AlignHCenter)
-
-    # def show(self) -> None:        
-    #     self.exec_()
 
     def _initalize_tabs(self, dice_frame) -> None:
         self._dice_tab = _DiceSettings()
