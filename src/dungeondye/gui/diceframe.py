@@ -102,7 +102,7 @@ class DiceFrame(QtWidgets.QWidget):
 
     def _initalize_buttons(self) -> None:
         icon = QtGui.QIcon(r'C:\Users\ssper\OneDrive\Projects\Table-Top-Dice-Roller\src\resources\images\roll_button_image.png')
-
+        
         self.roll_button = QtWidgets.QPushButton()
         # self.roll_button.setGeometry(QtCore.QRect(450, 220, 93, 28))
         self.roll_button.setStyleSheet(f"background-color:\"{constants.BUTTON_COLOR}\"")

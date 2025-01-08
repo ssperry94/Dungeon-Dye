@@ -6,6 +6,8 @@ class MainMenu(object):
     _title_label:QtWidgets.QLabel
     _pixmap:QtGui.QPixmap
     _layout:QtWidgets.QVBoxLayout 
+    _roll_shortcut:QtWidgets.QShortcut
+    _save_shortcut:QtWidgets.QShortcut
 
     def setupUi(self, main_window:QtWidgets.QMainWindow) -> None:
         main_window.setObjectName("main_window")
@@ -55,5 +57,13 @@ class MainMenu(object):
         button_frame = bottomframe.ButtonFrame(main_window)
         dice_frame.setupUi()
         button_frame.setupUI(dice_frame)
+        self._initalize_shortcut(main_window, dice_frame, button_frame)
         self._layout.addWidget(dice_frame, alignment=QtCore.Qt.AlignCenter)
         self._layout.addWidget(button_frame, alignment=QtCore.Qt.AlignCenter)
+
+    def _initalize_shortcut(self, main_window:QtWidgets.QMainWindow, dice_frame:diceframe.DiceFrame, bottom_frame:bottomframe.ButtonFrame):
+        self._roll_shortcut = QtWidgets.QShortcut(QtGui.QKeySequence("Ctrl+R"), main_window)
+        self._roll_shortcut.activated.connect(dice_frame.roll)
+
+        self._save_shortcut = QtWidgets.QShortcut(QtGui.QKeySequence("Ctrl+S"), main_window)
+        self._save_shortcut.activated.connect(bottom_frame.show_save_menu)
