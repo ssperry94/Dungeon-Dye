@@ -1,4 +1,4 @@
-from PyQt5 import QtWidgets, QtGui
+from PyQt5 import QtWidgets, QtGui, QtCore
 from dungeondye.utils import constants, utilities
 from dungeondye.gui import messagebox
 
@@ -140,3 +140,8 @@ class SavedMenu(QtWidgets.QDialog):
         #append to saved roll's list 
         #write that list to json
         
+    #override of key press event to have enter save instead of close the window 
+    def keyPressEvent(self, a0):
+        super().keyPressEvent(a0)
+        if a0.key() in (QtCore.Qt.Key_Enter, QtCore.Qt.Key_Return):
+            self._save()
