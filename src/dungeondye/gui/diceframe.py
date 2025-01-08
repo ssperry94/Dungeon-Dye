@@ -87,7 +87,7 @@ class DiceFrame(QtWidgets.QWidget):
 
         self._saved_roll_combo = QtWidgets.QComboBox()
         self._saved_roll_combo.setEditable(True)
-        # self._saved_roll_combo.setGeometry(QtCore.QRect(780, 140, 131, 22))
+        self._saved_roll_combo.setMaximumWidth(350)
         self._saved_roll_combo.setStyleSheet(f"color:\"white\"; background-color:\"{constants.COMBO_COLOR}\"; border: 1px solid black ")
         self._saved_roll_combo.setObjectName("_saved_roll_combo")
         self._dice_layout.addWidget(self._saved_roll_combo, 3, 2)
