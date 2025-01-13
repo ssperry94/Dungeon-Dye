@@ -64,13 +64,8 @@ class _DiceSettings(QtWidgets.QWidget):
         self._layout.addWidget(self._delete_button, 1,2)
 
     def clear_rolls(self):
-        confirm = QtWidgets.QMessageBox()
-        confirm.setIcon(QtWidgets.QMessageBox.Warning)
-        confirm.setWindowTitle("Confirm Deletion")
-        confirm.setText("WARNING! This action will permanently delete all saved rolls. Are you sure you wish to proceed?")
-        confirm.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
-        confirm.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Yes)
-        result = confirm.exec_()
+        confirm = messagebox.ConfirmationBox("Confirm Deletion", "WARNING! This action will permanently delete all saved rolls. Are you sure you wish to proceed?")
+        result = confirm.show()
         self._confirm_clear_rolls(result)
     
     def _confirm_clear_rolls(self, result): #get confirmation and attempt to delete all rolls
@@ -90,13 +85,8 @@ class _DiceSettings(QtWidgets.QWidget):
     def delete_rolls(self):
         deleted_rolls = [roll.text() for roll in self._widget_list if roll.isChecked()]
         deleted_rolls_output = "\n".join(deleted_rolls)
-        confirm = QtWidgets.QMessageBox()
-        confirm.setIcon(QtWidgets.QMessageBox.Warning)
-        confirm.setWindowTitle("Confirm Deletion")
-        confirm.setText(f"WARNING! This action will delete the following rolls:\n{deleted_rolls_output}\nAre you sure you wish to proceed?")
-        confirm.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
-        confirm.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Yes)
-        result = confirm.exec_()
+        confirm = messagebox.ConfirmationBox("Confirm Deletion", f"WARNING! This action will delete the following rolls:\n{deleted_rolls_output}\nAre you sure you wish to proceed?")
+        result = confirm.show()
         self._confirm_delete_rolls(deleted_rolls, result)
 
     def _confirm_delete_rolls(self, deleted_rolls:list, result) -> bool:

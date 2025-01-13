@@ -29,5 +29,19 @@ class MessageBox():
         self._box.setWindowTitle(self._window_title)
         self._box.setText(self._message)
 
+    @property
+    def get_box(self):
+        return self._box
+    
     def show(self):
-        self._box.exec_()
+       return self._box.exec_()
+
+class ConfirmationBox(MessageBox):
+    def __init__(self, window_title, message, error = False, warning = True, information = False):
+        super().__init__(window_title, message, error, warning, information)
+    
+    #overwrite of _create_box to get standard buttons 
+    def _create_box(self):
+        super()._create_box()
+        self._box.setStandardButtons(QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+        self._box.setDefaultButton(QMessageBox.StandardButton.Yes)

@@ -118,13 +118,8 @@ class SavedMenu(QtWidgets.QDialog):
         self._modifiers_combo.setCurrentText(str(rolls[2]))
 
     def _overwrite_roll(self, roll_name:str) -> bool:
-        confirm = QtWidgets.QMessageBox()
-        confirm.setIcon(QtWidgets.QMessageBox.Warning)
-        confirm.setWindowTitle("Name Overwrite")
-        confirm.setText(f"WARNING! There is already a roll saved with the name {roll_name}. Saving this roll will overwrite the currently saved roll. Do you wish to proceed?")
-        confirm.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
-        confirm.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Yes)
-        result = confirm.exec_()
+        confirm = messagebox.ConfirmationBox("Overwrite Name", f"WARNING! There is already a roll named {roll_name} saved. Saving this roll without changing the name will overwrite the previous roll. Proceed?")
+        result = confirm.show()
 
         if result != QtWidgets.QMessageBox.Yes:
             return False #user does not wish to overwrite roll
