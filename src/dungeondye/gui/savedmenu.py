@@ -117,6 +117,25 @@ class SavedMenu(QtWidgets.QDialog):
         self._modifiers_combo.addItems(constants.MODIFIER_LIST)
         self._modifiers_combo.setCurrentText(str(rolls[2]))
 
+    def _overwrite_roll(self, roll_name:str) -> bool:
+        confirm = QtWidgets.QMessageBox()
+        confirm.setIcon(QtWidgets.QMessageBox.Warning)
+        confirm.setWindowTitle("Name Overwrite")
+        confirm.setText(f"WARNING! There is already a roll saved with the name {roll_name}. Saving this roll will overwrite the currently saved roll. Do you wish to proceed?")
+        confirm.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
+        confirm.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Yes)
+        result = confirm.exec_()
+
+        if result != QtWidgets.QMessageBox.Yes:
+            return False #user does not wish to overwrite roll
+        else:
+            #overwrite the roll
+            roll_index = utilities.find_roll_index(roll_name)
+            if roll_index >= 0:
+                return utilities.remove_roll(roll_index)
+            else:
+                return False
+
     def _save(self) -> None:
         #get current combo values (including name)
         try:
@@ -124,6 +143,12 @@ class SavedMenu(QtWidgets.QDialog):
             roll_name = self._roll_name_text.text()
             if roll_name == '':
                 raise ValueError
+            elif utilities.search_saved_rolls(roll_name) is not None:
+                if self._overwrite_roll(roll_name) is False:
+                    message = messagebox.MessageBox("No Overwrite", "No rolls were saved.", information = True)
+                    message.show()
+                    return #no rolls were saved
+                
             if utilities.add_new_roll(rolls, roll_name) == True:
                 success = messagebox.MessageBox("Success", "Roll Successfully Saved!", information = True)
                 success.show()
@@ -136,9 +161,7 @@ class SavedMenu(QtWidgets.QDialog):
         except ValueError:
             val_error = messagebox.MessageBox("Incomplete Information", "Error! Please ensure that the number of dice and the type of dye is entered correctly.", error = True)
             val_error.show()
-        #confirm name is correct
-        #append to saved roll's list 
-        #write that list to json
+
         
     #override of key press event to have enter save instead of close the window 
     def keyPressEvent(self, a0):

@@ -5,6 +5,12 @@ from dungeondye.utils import constants
 '''
 Functions that adjust various settings, or can make changes to global variables
 '''
+def search_saved_rolls(name:str) -> savedroll.SavedRoll:
+    for roll in constants.SAVED_ROLLS_LIST:
+        if roll.roll_name == name:
+            return roll
+    return None
+
 def add_new_roll(roll_info:tuple, roll_name:str) -> bool:
     #turn into a saved roll
     new_roll = savedroll.SavedRoll(roll_info, roll_name)
@@ -13,12 +19,6 @@ def add_new_roll(roll_info:tuple, roll_name:str) -> bool:
     #write out list 
     parser = rollparser.RollParser()
     return parser.upload() 
-
-def search_saved_rolls(name:str) -> savedroll.SavedRoll:
-    for roll in constants.SAVED_ROLLS_LIST:
-        if roll.roll_name == name:
-            return roll
-    return None
 
 def create_saved_rolls_list() -> list:
     saved_roll_list:list = []
