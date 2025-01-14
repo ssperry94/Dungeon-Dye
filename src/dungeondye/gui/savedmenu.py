@@ -120,7 +120,6 @@ class SavedMenu(QtWidgets.QDialog):
     def _overwrite_roll(self, roll_name:str) -> bool:
         confirm = messagebox.ConfirmationBox("Overwrite Name", f"WARNING! There is already a roll named {roll_name} saved. Saving this roll without changing the name will overwrite the previous roll. Proceed?")
         result = confirm.show()
-
         if result != QtWidgets.QMessageBox.Yes:
             return False #user does not wish to overwrite roll
         else:
@@ -135,7 +134,7 @@ class SavedMenu(QtWidgets.QDialog):
         #get current combo values (including name)
         try:
             rolls = (int(self._dice_number_combo.currentText()), int(self._dice_side_combo.currentText()), int(self._modifiers_combo.currentText()))
-            roll_name = self._roll_name_text.text()
+            roll_name = self._roll_name_text.text().strip()
             if roll_name == '':
                 raise ValueError
             elif utilities.search_saved_rolls(roll_name) is not None:
