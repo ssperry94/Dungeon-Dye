@@ -1,3 +1,10 @@
 **__pycache__
 /.vscode
 .env
+
+#ignore build-related files
+/build
+/dist
+main.spec
+Pipfile
+compile instructions.txt
