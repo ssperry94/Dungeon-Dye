@@ -1,5 +1,5 @@
 import json 
-from dungeondye.utils import constants
+from dungeondye.utils import constants, setup
 class RollParser:
 
     def upload(self) -> bool:
@@ -13,11 +13,15 @@ class RollParser:
 
     def retrieve(self) -> dict:
         roll_dict = {}
-        with open(constants.SAVED_ROLLS_PATH, 'r') as infile:
-            try:
-                roll_dict = json.load(infile)
-            except ValueError:
-                pass
+        try:
+            with open(constants.SAVED_ROLLS_PATH, 'r') as infile:
+                try:
+                    roll_dict = json.load(infile)
+                except ValueError:
+                    pass
+        except FileNotFoundError as e:
+            setup.create_saved_roll_file()
+            
         return roll_dict
     
     def format_saved_rolls(self) -> dict:
