@@ -15,11 +15,17 @@ def get_saved_roll_path() -> str:
 
 def create_saved_roll_file() -> bool:
     #write default rolls into User/AppData/Local/DungeonDye 
-    with open(constants.SAVED_ROLLS_PATH, "w") as outfile:
-        json.dump({}, outfile)
-        return True 
-    return False
+    #make relevent directory if false:
+    if(create_local_data_dir()):
+        with open(constants.SAVED_ROLLS_PATH, "w") as outfile:
+            json.dump({}, outfile)
+            return True 
+        return False
 
 #creates DungeonDye app data directory 
 def create_local_data_dir() -> bool:
-    pass 
+    if os.path.exists(constants.DUNGEON_DIR) is False:
+        os.mkdir(constants.DUNGEON_DIR) #make directory if false 
+        return os.path.exists(constants.DUNGEON_DIR)
+    
+    return True 

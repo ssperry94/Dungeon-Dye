@@ -5,8 +5,10 @@ Need functionality for settings.json as well
 
 from dungeondye.dice import savedroll
 from dungeondye.utils import utilities
+import os
 #path to the saved rolls json 
-SAVED_ROLLS_PATH:str = r'C:\Users\ssper\OneDrive\Projects\Table-Top-Dice-Roller\src\resources\jsons\saved_rolls.json'
+DUNGEON_DIR = os.path.abspath(os.getcwd())
+SAVED_ROLLS_PATH:str = os.path.join(DUNGEON_DIR, "saved_rolls.json")
 
 #exact spelling of keys of dictionary:
 DICENUM = "dicenumber"
