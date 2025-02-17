@@ -36,7 +36,6 @@ class MainMenu(object):
     def retranslateUi(self, main_window:QtWidgets.QMainWindow) -> None:
         _translate = QtCore.QCoreApplication.translate
         main_window.setWindowTitle(_translate("main_window", "Dungeon Dice"))
-        main_window.setToolTip(_translate("main_window", "<html><head/><body><p><br/></p></body></html>"))
 
     def _initalize_widgets(self) -> None:
         #set pixmap
