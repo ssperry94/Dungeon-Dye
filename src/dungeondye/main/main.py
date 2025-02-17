@@ -1,11 +1,9 @@
 from PyQt5 import QtWidgets
 import sys
 from dungeondye.gui import mainmenu
-from dungeondye.utils import constants
 
 #CURRENTLY: need a way to get default path for saved_rolls_json, then detect if file exits, and if not, create one
 def run() -> None:
-    print(constants.DUNGEON_DIR)
     DungeonDye = QtWidgets.QApplication(sys.argv)
     main_menu = mainmenu.MainMenu()
     main_window = QtWidgets.QMainWindow()
