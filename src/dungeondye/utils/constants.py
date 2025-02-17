@@ -6,8 +6,9 @@ Need functionality for settings.json as well
 from dungeondye.dice import savedroll
 from dungeondye.utils import utilities
 import os
+
 #path to the saved rolls json 
-DUNGEON_DIR = os.path.abspath(os.getcwd())
+DUNGEON_DIR = os.path.abspath(os.getcwd())  #get the current working directory
 SAVED_ROLLS_PATH:str = os.path.join(DUNGEON_DIR, "saved_rolls.json")
 
 #exact spelling of keys of dictionary:
@@ -28,6 +29,11 @@ COMBO_COLOR = "#6A0DAD"
 APP_BACKGROUND_COLOR = "rgb(35, 40, 48)"
 BUTTON_COLOR = "#FE2B26"
 LABEL_TEXT_COLOR = "#FE2B26"
+
+#logo 
+IMAGES_DIR = os.path.join(DUNGEON_DIR, "images")
+DUNGEON_LOGO = os.path.join(IMAGES_DIR, "DungeonDyeLogo.png")
+ROLL_BTN_LOGO = os.path.join(IMAGES_DIR, "roll_button_image.png")
 
 #immutable settings 
 BUTTON_HEIGHT = 85

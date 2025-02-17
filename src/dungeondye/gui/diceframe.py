@@ -101,7 +101,7 @@ class DiceFrame(QtWidgets.QWidget):
         self._dice_layout.addWidget(self._output_browser, 7,0,1,3)
 
     def _initalize_buttons(self) -> None:
-        icon = QtGui.QIcon(r'C:\Users\ssper\OneDrive\Projects\Table-Top-Dice-Roller\src\resources\images\roll_button_image.png')
+        icon = QtGui.QIcon(constants.ROLL_BTN_LOGO)
         
         self.roll_button = QtWidgets.QPushButton()
         # self.roll_button.setGeometry(QtCore.QRect(450, 220, 93, 28))
