@@ -9,7 +9,7 @@ import os
 
 #path to the saved rolls json 
 DUNGEON_DIR = os.path.abspath(os.getcwd())  #get the current working directory
-SAVED_ROLLS_PATH:str = os.path.join(DUNGEON_DIR, "saved_rolls.json")
+SAVED_ROLLS_PATH:str = os.path.join(DUNGEON_DIR, "resources/saved_rolls.json")
 
 #exact spelling of keys of dictionary:
 DICENUM = "dicenumber"
@@ -31,7 +31,7 @@ BUTTON_COLOR = "#FE2B26"
 LABEL_TEXT_COLOR = "#FE2B26"
 
 #logo 
-IMAGES_DIR = os.path.join(DUNGEON_DIR, "images")
+IMAGES_DIR = os.path.join(DUNGEON_DIR, "resources/images")
 DUNGEON_LOGO = os.path.join(IMAGES_DIR, "DungeonDyeLogo.png")
 ROLL_BTN_LOGO = os.path.join(IMAGES_DIR, "roll_button_image.png")
 
