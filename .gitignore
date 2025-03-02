@@ -8,3 +8,10 @@
 main.spec
 Pipfile
 compile instructions.txt
+build instructions.txt 
+
+#ignore virtual enviorment 
+/Lib
+/Scripts
+/pyvenv.cfg
+/Include 

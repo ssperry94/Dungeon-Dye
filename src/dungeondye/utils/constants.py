@@ -9,7 +9,7 @@ import os
 
 #path to the saved rolls json 
 DUNGEON_DIR = os.path.abspath(os.getcwd())  #get the current working directory
-SAVED_ROLLS_PATH:str = os.path.join(DUNGEON_DIR, "resources/saved_rolls.json")
+SAVED_ROLLS_PATH:str = os.path.join(DUNGEON_DIR, "resources/jsons/saved_rolls.json")
 
 #exact spelling of keys of dictionary:
 DICENUM = "dicenumber"
