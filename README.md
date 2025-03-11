@@ -32,4 +32,25 @@ You can either clone this repo and build it yourself, or download the latest exe
 - see all other dependancies in `requirements.txt` 
 
 ### How to Build 
+To build and run from the command line:
+
+1. clone this repository with `git clone https://github.com/ssperry94/Dungeon-Dye`
+2. `cd Dungeon-Dye` 
+3. Create a virtual enviorment (optional but recommended) 
+4. run `pip install -r requirements.txt`
+5. run `cd src` 
+6. run `python -m dungeondye.main` 
+
+To create the executable yourself: 
+
+1. Ensure pyinstaller is install on your machine (see dependancies section)
+2. clone this repository with `git clone https://github.com/ssperry94/Dungeon-Dye`
+2. `cd Dungeon-Dye` 
+3. Create a virtual enviorment (optional but recommended) 
+4. run `pip install -r requirements.txt`
+5. run `pyinstaller src/dungeondye/main.py --onefile --noconsole`
+6. Copy the resources folder from the src directory using one of the following commands:
+```Powershell`Copy-Item -Path src/resources -Destination ./dist -Recurse````
+
+
 
