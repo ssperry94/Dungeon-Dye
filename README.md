@@ -49,8 +49,13 @@ To create the executable yourself:
 3. Create a virtual enviorment (optional but recommended) 
 4. run `pip install -r requirements.txt`
 5. run `pyinstaller src/dungeondye/main.py --onefile --noconsole`
-6. Copy the resources folder from the src directory using one of the following commands:
-```Powershell`Copy-Item -Path src/resources -Destination ./dist -Recurse````
+6. Copy the resources folder from the src directory to the dist directory using one of the following commands:
+- PowerShell: `Copy-Item -Path src/resources -Destination ./dist -Recurse`
 
+- Command Prompt: `robocopy ./src/resources ./dist/resources /e`
+
+- Bash: `cp ./src/resource ./dist -r`
+
+7. `cd ./dist` then double click on the executable
 
 
