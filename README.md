@@ -31,6 +31,10 @@ You can either clone this repo and build it yourself, or download the latest exe
 - [Pyinstaller](https://pyinstaller.org/en/stable/installation.html) (only if building the exe yourself)
 - see all other dependancies in `requirements.txt` 
 
+### Running from the Executable 
+If you've downloaded the executabable, make sure that the package includes a resources directory with an images and jsons subdirectory, and the executable. 
+
+To run, simply double click the executable file. **NOTE** this executable  *has no digital signature* so Windows SmartScreen may flag this application. To bypass, simply click More Info -> Run Anyway.  
 ### How to Build 
 To build and run from the command line:
 
@@ -57,5 +61,30 @@ To create the executable yourself:
 - Bash: `cp ./src/resource ./dist -r`
 
 7. `cd ./dist` then double click on the executable
+## Tutorial
 
+Once the application is running, using it is fairly straight forward. In the main menu, you should see this screen:
 
+<p><img src='/docs/main_menu.png'></p>
+
+On the left side, there is a Dice Number box, a Dice Side box, and a modifier box. You can either select values straight from the box, or type in any numerical value greater than or equal to zero. Dice number refers to how many dice you wish to roll, and dice side indicates the type of dice being thrown. 
+
+The modifier box adds that number to your final roll. For example, to roll 2d8 + 3, the dice number box should be set to 2, the dice side to 8, and the modifer to 3.  
+
+<p><img src='/docs/2_d_8.png'></p>
+
+To roll, either click the button in the center of the app with the d20 on it, or use the keyboard shortcut CTRL+R. The box underneath the roll button displays the output of the roll. 
+
+To save a roll, simply either click the save button in the bottom center, or press CTRL+S. That will bring up the roll saver screen. 
+
+<p><img src='/docs/save_menu.png'></p> 
+
+All of the dice information will default to what is currently being rolled in the main menu, but you can change these values as needed. Once you are ready to save, make sure to name your roll. Each name must be unique to your roll. If you try and give a roll the same name as another, it will ask if you wish to overwrite this roll. 
+
+To access your saved roll, simply click on the Saved Rolls box - which is where Dungeon Dye will store all of your rolls. Upon selecting the roll, you'll notice that all of the boxes in the main menu will automatically update to the values within that roll. 
+
+To delete any rolls in your list, simply click on the settings button, and the settings menu will appear. 
+
+<p><img src='/docs/settings.png'></p>
+
+As of now, there is only the options to either delete specific rolls, or clear the entire list. Simply checkmark the rolls you wish to delete and hit the delete button. If you wish to delete all of your rolls, you can either select them all or hit the clear button. 
